@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>World Wide</title>
+<title>Digital Learning System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/css/worldwide.css'); ?>">
@@ -336,17 +336,7 @@ $(document).ready(function()
 </script>
 </head>
 <body>
-    <div id="wb_logo">
-        <div id="logo">
-            <div class="row">
-                <div class="col-1">
-                        <h1 id="logoHeading"> Welcome <?php echo $this->session->userdata("username"); ?></h1>
-                    </div>
-                    <hr id="Line1" style="display:block;width: 100%;z-index:2;">
-                </div>
-            </div>
-        </div>
-    </div>
+ 
     <div id="wb_header">
         <div id="header">
             <div class="row">
@@ -419,10 +409,10 @@ $(document).ready(function()
                 <div class="col-1">
                     <div class="col-1-padding">
                         <div id="wb_introHeading" style="display:inline-block;width:100%;z-index:6;">
-                            <h1 id="introHeading">Let's talk. Send us your details and we will reply.</h1>
+                            <h1 id="introHeading">Dapatkan Karir Impian Dengan Belajar Pemrograman</h1>
                         </div>
                         <div id="wb_introText">
-                            <p style="color:#969696;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.</p>
+                            <p style="color:#969696;">Materi di susun dengan teratur dan mudah di fahami, mulai lah belajar sekarang juga dan menjadi developer handal.</p>
                         </div>
                     </div>
                 </div>
@@ -436,10 +426,10 @@ $(document).ready(function()
                     <div class="col-1-padding">
                         <div id="wb_servicesCard1" style="display:flex;width:100%;text-align:center;z-index:8;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard1-card-body">
-                                <div id="servicesCard1-card-item0"><i class="fa fa-clock-o"></i></div>
-                                <div id="servicesCard1-card-item1">Design</div>
+                                <div id="servicesCard1-card-item0"><img src="<?php echo base_url('assets/images/logo_android.png'); ?>" id="Image1"  alt="Android Development" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard1-card-item1">Android Development</div>
                                 <div id="servicesCard1-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard1-card-item3">Learn more ></div>
+                                <div id="servicesCard1-card-item3">Mulai Belajar ></div>
                             </div>
 
                         </div>
@@ -449,10 +439,10 @@ $(document).ready(function()
                     <div class="col-2-padding">
                         <div id="wb_servicesCard2" style="display:flex;width:100%;text-align:center;z-index:9;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard2-card-body">
-                                <div id="servicesCard2-card-item0"><i class="fa fa-gears"></i></div>
-                                <div id="servicesCard2-card-item1">Branding</div>
+                                <div id="servicesCard2-card-item0"><img src="<?php echo base_url('assets/images/logo_html.png'); ?>" id="Image1"  alt="Web Development" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard2-card-item1">Front-End Web Developer</div>
                                 <div id="servicesCard2-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard2-card-item3">Learn more ></div>
+                                <div id="servicesCard2-card-item3">Mulai Belajar ></div>
                             </div>
 
                         </div>
@@ -462,10 +452,10 @@ $(document).ready(function()
                     <div class="col-3-padding">
                         <div id="wb_servicesCard3" style="display:flex;width:100%;text-align:center;z-index:10;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard3-card-body">
-                                <div id="servicesCard3-card-item0"><i class="fa fa-check-circle"></i></div>
-                                <div id="servicesCard3-card-item1">Marketing</div>
+                                <div id="servicesCard3-card-item0"><img src="<?php echo base_url('assets/images/machine_learning.png'); ?>" id="Image1"  alt="Machine Learning" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard3-card-item1">Machine Learning</div>
                                 <div id="servicesCard3-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard3-card-item3">Learn more ></div>
+                                <div id="servicesCard3-card-item3">Mulai Belajar ></div>
                             </div>
 
                         </div>
