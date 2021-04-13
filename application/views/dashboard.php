@@ -429,7 +429,7 @@ $(document).ready(function()
                                 <div id="servicesCard1-card-item0"><img src="<?php echo base_url('assets/images/logo_android.png'); ?>" id="Image1"  alt="Android Development" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard1-card-item1">Android Development</div>
                                 <div id="servicesCard1-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard1-card-item3">Mulai Belajar ></div>
+                                <div id="servicesCard1-card-item3" ><a href="courseAndroid">Mulai Belajar ></a></div>
                             </div>
 
                         </div>

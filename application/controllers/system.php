@@ -88,4 +88,10 @@ class System extends CI_Controller {
 
         }
 
+        function courseAndroid() {
+
+            $this->load->view('course.php');
+
+        }
+
     }
