@@ -8,6 +8,11 @@ class System extends CI_Controller {
         $this->load->model('m_data');
         $this->load->helper('url');
         $this->load->helper('email');
+
+        header('Cache-Control: no-cache, must-revalidate, max-age=0');
+        header('Cache-Control: post-check=0, pre-check=0',false);
+        header('Pragma: no-cache');
+
     }
 
     function user() {
@@ -94,8 +99,19 @@ class System extends CI_Controller {
 
         function courseAndroid() {
 
-            $this->load->view('course.php');
-
-        }
+            if (!$this->session->has_userdata('arya_ackerman')){
+                $this->load->view('course.php');
+              } else {
+                echo '<script language="javascript">';
+                echo 'alert("Akses Dilarang !")';
+                echo '</script>';
+              }
 
     }
+
+    function logout() {
+        $this->session->sess_destroy();
+        redirect(base_url('index.php/system/index'));
+    }
+
+}
