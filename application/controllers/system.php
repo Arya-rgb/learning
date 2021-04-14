@@ -16,6 +16,10 @@ class System extends CI_Controller {
     }
 
     function index() {
+        $this->load->view('dashboard.php');
+    }
+
+    function login() {
         $this->load->view('loginpage.php');
     }
 
@@ -45,7 +49,7 @@ class System extends CI_Controller {
             );
 
             $this->session->set_userdata($data_session);
-            $this->load->view('dashboard.php');
+            $this->load->view('dashboardUser.php');
 
          } else {
              
