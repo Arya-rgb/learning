@@ -21,7 +21,11 @@ class System extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('dashboard.php');
+        if($this->session->userdata("username") != NULL) {
+            $this->load->view('dashboardUser.php');
+        } else {
+            $this->load->view('dashboard.php');
+        }
     }
 
     function login() {
@@ -98,15 +102,13 @@ class System extends CI_Controller {
         }
 
         function courseAndroid() {
-
-            if (!$this->session->has_userdata('arya_ackerman')){
+            if($this->session->userdata("username") != NULL) {
                 $this->load->view('course.php');
-              } else {
+            } else {
                 echo '<script language="javascript">';
                 echo 'alert("Akses Dilarang !")';
                 echo '</script>';
-              }
-
+            }
     }
 
     function logout() {
