@@ -15,4 +15,8 @@ class M_data extends CI_Model {
         $this->db->insert($table, $data);
     }
 
+    function acak($text) {
+        return md5(sha1(md5(sha1(sha1(md5(md5(sha1(md5(md5($text))))))))));
+    }
+
 }
