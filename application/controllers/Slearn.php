@@ -43,7 +43,7 @@ class Slearn extends MY_Controller {
             'username' => $username,
             'password' => $password
         );
-        
+
         $check = $this->m_data->check_login("data_user", $where)->num_rows();
         if ($check > 0)  {
 
@@ -57,7 +57,7 @@ class Slearn extends MY_Controller {
             $this->load->view('dashboardUser.php');
 
          } else {
-             
+
             echo '<script language="javascript">';
             echo 'alert("Username atau password salah !")';
             echo '</script>';

@@ -1,0 +1,20 @@
+membuat menggunakan ci referensi nya bisa dari pmi.org / blockchain council 
+ada halaman untuk daftar jadi member di dalam nya bisa dapat informasi khusus yang hanya bisa di lihat ketika login dan juga 
+kedepan nya ada lms learning management system, misalkan, login menggunakan auth/token, 
+
+judul
+subjudul
+deskripsi
+video 
+
+
+//yang belum
+membuat database course yang berisi
+judul
+subjudul
+deskripsi
+video 
+course ini masuk ke database lalu di tampilan di course nya...
+video berupa url lalu di streaming di halaman course nya..
+
+
