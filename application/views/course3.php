@@ -48,8 +48,8 @@ https://templatemo.com/tm-529-ramayana
                 <div class="row">
                   <div class="col-md-6">
                     <div class="left-content">
-                      <h1>Course 1</h1>
-                      <h4>Install Android Studio</h4>
+                      <h1>Course 3</h1>
+                      <h4>Memulai Membuat Project Di Android Studio</h4>
                       <p>Lorem ipsum dolor amet raclette chambray bitters, hammock celiac slow-carb flexitarian four dollar toast food truck health goth. Air plant brunch food truck vegan scenester organic crucifix irony pour-over pop-up austin hexagon kitsch swag. Godard literally humblebrag cloud bread vice master cleanse chambray typewriter put a bird on it brooklyn forage.<br><br>Air plant brunch food truck vegan scenester organic crucifix irony pour-over pop-up austin hexagon kitsch swag. Godard literally humblebrag cloud bread vice master cleanse chambray typewriter put bird brooklyn</p>
                       <div class="primary-button">
                         <a href="#">Read More</a>
@@ -57,7 +57,7 @@ https://templatemo.com/tm-529-ramayana
                     </div>
                   </div>
                   <div class="col-md-6">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/roDz8mMvbIg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/R0ALixzhIjs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
                 </div>
               </div>

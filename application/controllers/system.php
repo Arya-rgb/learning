@@ -21,7 +21,7 @@ class System extends CI_Controller {
     }
 
     function index() {
-        if($this->session->userdata("username") != NULL) {
+        if($this->session->userdata("token") != NULL) {
             $this->load->view('dashboardUser.php');
         } else {
             $this->load->view('dashboard.php');
@@ -33,12 +33,10 @@ class System extends CI_Controller {
     }
 
     function loginUser() {
-        $nama_lengkap = $this->input->post('nama_lengkap');
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $email = $this->input->post("email");
-        $headline = $this->input->post("headline");
-        $tentang_saya = $this->input->post("tentang_saya");
+        $passwordInput = $this->input->post('password');
+        $password = md5(sha1(md5(sha1(sha1(md5(md5(sha1(md5(md5($passwordInput))))))))));
+        $token = md5(sha1(md5(sha1(sha1(md5(md5(sha1(md5(md5($username))))))))));
 
         $where = array(
             'username' => $username,
@@ -49,12 +47,9 @@ class System extends CI_Controller {
         if ($check > 0)  {
 
             $data_session = array(
-                'nama_lengkap' => $nama_lengkap,
                 'username' => $username,
                 'password' => $password,
-                'email' => $email,
-                'headline' => $headline,
-                'tentang_saya' => $tentang_saya
+                'token' => $token
             );
 
             $this->session->set_userdata($data_session);
@@ -79,7 +74,8 @@ class System extends CI_Controller {
 
         $nama_lengkap = $this->input->post('nama_lengkap');
         $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
+        $passwordInput = $this->input->post('password');
+        $password = md5(sha1(md5(sha1(sha1(md5(md5(sha1(md5(md5($passwordInput))))))))));
         $email = $this->input->post("email");
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
         $headline = $this->input->post("headline");
@@ -102,7 +98,7 @@ class System extends CI_Controller {
         }
 
         function courseAndroid() {
-            if($this->session->userdata("username") != NULL) {
+            if($this->session->userdata("token") != NULL) {
                 $this->load->view('course.php');
             } else {
                 echo '<script language="javascript">';
@@ -110,10 +106,38 @@ class System extends CI_Controller {
                 echo '</script>';
             }
     }
+    function courseAndroid2() {
+        if($this->session->userdata("token") != NULL) {
+            $this->load->view('course2.php');
+        } else {
+            echo '<script language="javascript">';
+            echo 'alert("Akses Dilarang !")';
+            echo '</script>';
+        }
+}
+
+function courseAndroid3() {
+    if($this->session->userdata("token") != NULL) {
+        $this->load->view('course3.php');
+    } else {
+        echo '<script language="javascript">';
+        echo 'alert("Akses Dilarang !")';
+        echo '</script>';
+    }
+}
+
+function courseAndroid4() {
+    if($this->session->userdata("token") != NULL) {
+        $this->load->view('course4.php');
+    } else {
+        echo '<script language="javascript">';
+        echo 'alert("Akses Dilarang !")';
+        echo '</script>';
+    }
+}
 
     function logout() {
-        $this->session->sess_destroy();
-        redirect(base_url('index.php/system/index'));
+			$this->session->sess_destroy();
+			redirect(base_url('index.php/system/index'));
     }
-
 }
