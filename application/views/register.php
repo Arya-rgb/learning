@@ -11,7 +11,7 @@
 <body>
 <div class="container">
   <section id="content">
-  <form action="<?php echo base_url('index.php/system/userAdd'); ?>" method="post">
+  <form action="<?= $action ?>" method="post">
       <h1>Register Form</h1>
       <div>
         <input name="nama_lengkap" type="text" placeholder="Nama Lengkap" required="" id="nama_lengkap" />
