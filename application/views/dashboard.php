@@ -344,7 +344,7 @@ $(document).ready(function()
                     <div id="wb_headerMenu" style="display:inline-block;width:100%;z-index:3;vertical-align:top;">
                         <ul id="headerMenu">
                             <li class="active" aria-current="page">Home</li>
-                            <li><a href="./login">Login</a></li>
+                            <li><a href="<?= base_url('slearn/login');?>">Login</a></li>
                             <li><a href="./services.html">Services</a></li>
                             <li><a href="./team.html">Team</a></li>
                             <li><a href="./contact.html">Contact</a></li>

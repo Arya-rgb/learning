@@ -32,7 +32,7 @@
     </div>
 <div class="container">
   <section id="content">
-   <form action="<?php echo base_url('index.php/system/loginUser'); ?>" method="post">
+   <form action="<?= $action ?>" method="post">
       <h1>Login Form</h1>
       <div>
         <input name="username" type="text" placeholder="Username" required="" id="username" />

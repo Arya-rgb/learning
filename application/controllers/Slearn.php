@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class System extends CI_Controller {
+class Slearn extends MY_Controller {
 
     function __construct() {
         parent::__construct();
@@ -29,7 +29,8 @@ class System extends CI_Controller {
     }
 
     function login() {
-        $this->load->view('loginpage.php');
+    	$data['action'] = base_url($this->class .'/loginUser');
+        $this->load->view('loginpage', $data);
     }
 
     function loginUser() {
@@ -67,7 +68,8 @@ class System extends CI_Controller {
         }
 
         function register() {
-            $this->load->view('register.php');
+            $data['action'] = base_url($this->class .'/userAdd');
+            $this->load->view('register', $data);
         }
 
         function userAdd() {
@@ -138,6 +140,6 @@ function courseAndroid4() {
 
     function logout() {
 			$this->session->sess_destroy();
-			redirect(base_url('index.php/system/index'));
+			redirect(base_url($this->class));
     }
 }
