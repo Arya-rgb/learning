@@ -65,8 +65,11 @@ class Users extends MY_Controller {
 	public function save()
 	{
     $conf = array(
-            array('field' => 'nama', 'label' => 'Nama', 'rules' => 'trim|required|callback_unique'),
-            array('field' => 'jabatan', 'label' => 'Jabatan', 'rules' => 'trim|required'),
+            array('field' => 'nama_lengkap', 'label' => 'Nama', 'rules' => 'trim|required|callback_unique'),
+            array('field' => 'username', 'label' => 'Username', 'rules' => 'trim|required'),
+            array('field' => 'email', 'label' => 'Email', 'rules' => 'trim|required'),
+            array('field' => 'headline', 'label' => 'Headline', 'rules' => 'trim|required'),
+            array('field' => 'tentang_saya', 'label' => 'Tentang Saya', 'rules' => 'trim|required'),
         );
 
     $this->form_validation->set_rules($conf);
@@ -86,12 +89,11 @@ class Users extends MY_Controller {
       dd($date);
       dd($date['tahun']);
       $data = array(
-        'nama' => $this->input->post('nama'),
-        'jabatan' => $this->input->post('jabatan'),
-        'tgl_lahir' => $this->input->post('tgl_lahir'),
-        'tanggal' => $this->input->post('tanggal'),
-        'bulan' => $this->input->post('bulan'),
-        'tahun' => $this->input->post('tahun'),
+        'nama_lengkap' => $this->input->post('nama_lengkap'),
+        'username' => $this->input->post('username'),
+        'email' => $this->input->post('email'),
+        'headline' => $this->input->post('headline'),
+        'tentang_saya' => $this->input->post('tentang_saya'),
       );
       if ($where['id'] != '') {
         $update = $this->model->update_data('data_user', $data, $where);
@@ -107,9 +109,9 @@ class Users extends MY_Controller {
         $response['pesan'] = 'Data Tidak Berhasil Ditambahkan';
         $response['status'] = 404;
         if ($create != 0) {
-          $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
-          $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
-          $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
+          // $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
+          // $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
+          // $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
           $response['pesan'] = 'Data Berhasil Ditambahkan';
           $response['status'] = 200;
         }

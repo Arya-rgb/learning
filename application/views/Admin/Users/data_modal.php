@@ -9,20 +9,32 @@
     <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Nama</label>
-        <?php echo form_input($data, !empty($data['nama']) ? $data['nama'] : '', 'class="form-control form-control-user" name="nama"');?>
+        <label>Nama Lengkap</label>
+        <?php echo form_input($data, !empty($data['nama_lengkap']) ? $data['nama_lengkap'] : '', 'class="form-control form-control-user" name="nama_lengkap"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Jabatan</label>
-        <?php echo form_input($data, !empty($data['jabatan']) ? $data['jabatan'] : '', 'class="form-control form-control-user" name="jabatan"');?>
+        <label>Username</label>
+        <?php echo form_input($data, !empty($data['username']) ? $data['username'] : '', 'class="form-control form-control-user" name="username"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Tanggal Lahir</label>
-        <input class="form-control form-control-user" type="date" name="tgl_lahir" value="<?=!empty($data['tgl_lahir']) ? $data['tgl_lahir'] : '';?>">
+        <label>Email</label>
+        <?php echo form_input($data, !empty($data['email']) ? $data['email'] : '', 'class="form-control form-control-user" name="email"');?>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <label>Headline</label>
+        <?php echo form_input($data, !empty($data['headline']) ? $data['headline'] : '', 'class="form-control form-control-user" name="headline"');?>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <label>Tentang Saya</label>
+        <?php echo form_input($data, !empty($data['tentang_saya']) ? $data['tentang_saya'] : '', 'class="form-control form-control-user" name="tentang_saya"');?>
       </div>
     </div>
   </div>
@@ -30,7 +42,7 @@
   <button type="button" id="simpan" class="btn btn-dark" <?=$disable;?>>Simpan</button>
 <?php echo form_close() ?>
 
-<script type="text/javascript" src="<?= base_url();?>assets/vendor/jquery/bootbox.min.js"></script>
+<script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
