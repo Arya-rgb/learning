@@ -138,4 +138,16 @@ function courseAndroid4() {
 			$this->session->sess_destroy();
 			redirect(base_url($this->class));
     }
+
+
+    function androidcourse() {
+        if($this->session->userdata("token") != NULL) {
+            $this->load->view('course/androidcoursepage.php');
+        } else {
+            echo '<script language="javascript">';
+            echo 'alert("Akses Dilarang !")';
+            echo '</script>';
+        }
+    }
+
 }

@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>Login Page</title>
-<link rel="stylesheet" href="<?php echo base_url('assets/css/stylelogin.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/stylelogin.css'); ?>">
 </head>
 <body>
 <div class="container">

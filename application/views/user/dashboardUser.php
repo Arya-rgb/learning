@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <title>Digital Learning System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/worldwide.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/index.css'); ?>">
-<script src="<?php echo base_url('assets/js/jquery-1.12.4.min.js'); ?>"> </script>
-<script src="<?php echo base_url('assets/js/jquery-ui.min.js'); ?>"> </script> 
-<script src="<?php echo base_url('assets/js/skrollr.min.js'); ?>"> </script>
-<script src="<?php echo base_url('assets/js/wwb15.min.js'); ?>"> </script>
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/font-awesome.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/worldwide.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/index.css'); ?>">
+<script src="<?php echo base_url('assets/user/js/jquery-1.12.4.min.js'); ?>"> </script>
+<script src="<?php echo base_url('assets/user/js/jquery-ui.min.js'); ?>"> </script> 
+<script src="<?php echo base_url('assets/user/js/skrollr.min.js'); ?>"> </script>
+<script src="<?php echo base_url('assets/user/js/wwb15.min.js'); ?>"> </script>
 
 <script>
 $(document).ready(function()
@@ -426,10 +426,10 @@ $(document).ready(function()
                     <div class="col-1-padding">
                         <div id="wb_servicesCard1" style="display:flex;width:100%;text-align:center;z-index:8;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard1-card-body">
-                                <div id="servicesCard1-card-item0"><img src="<?php echo base_url('assets/images/logo_android.png'); ?>" id="Image1"  alt="Android Development" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard1-card-item0"><img src="<?php echo base_url('assets/user/images/logo_android.png'); ?>" id="Image1"  alt="Android Development" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard1-card-item1">Android Development</div>
                                 <div id="servicesCard1-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard1-card-item3" ><a href="courseAndroid">Mulai Belajar ></a></div>
+                                <div id="servicesCard1-card-item3" ><a href="androidcourse">Mulai Belajar ></a></div>
                             </div>
 
                         </div>
@@ -439,7 +439,7 @@ $(document).ready(function()
                     <div class="col-2-padding">
                         <div id="wb_servicesCard2" style="display:flex;width:100%;text-align:center;z-index:9;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard2-card-body">
-                                <div id="servicesCard2-card-item0"><img src="<?php echo base_url('assets/images/logo_html.png'); ?>" id="Image1"  alt="Web Development" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard2-card-item0"><img src="<?php echo base_url('assets/user/images/logo_html.png'); ?>" id="Image1"  alt="Web Development" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard2-card-item1">Front-End Web Developer</div>
                                 <div id="servicesCard2-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                                 <div id="servicesCard2-card-item3">Mulai Belajar ></div>
@@ -452,7 +452,7 @@ $(document).ready(function()
                     <div class="col-3-padding">
                         <div id="wb_servicesCard3" style="display:flex;width:100%;text-align:center;z-index:10;" data--250-bottom="transform: scale(1.0,1.0);" data-333-bottom="transform: scale(0.5,0.5);">
                             <div id="servicesCard3-card-body">
-                                <div id="servicesCard3-card-item0"><img src="<?php echo base_url('assets/images/machine_learning.png'); ?>" id="Image1"  alt="Machine Learning" style="width:60px;height:50px;"></div>
+                                <div id="servicesCard3-card-item0"><img src="<?php echo base_url('assets/user/images/machine_learning.png'); ?>" id="Image1"  alt="Machine Learning" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard3-card-item1">Machine Learning</div>
                                 <div id="servicesCard3-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                                 <div id="servicesCard3-card-item3">Mulai Belajar ></div>

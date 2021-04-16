@@ -12,7 +12,7 @@
     <title>Course Android</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/user/css/bootstrap.min.css'); ?>">
 
 <!--
 Ramayana CSS Template
@@ -20,9 +20,9 @@ https://templatemo.com/tm-529-ramayana
 -->
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/templatemo-style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/user/css/fontawesome.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/user/css/templatemo-style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/user/css/owl.css'); ?>">
 
   </head>
 
@@ -89,20 +89,20 @@ https://templatemo.com/tm-529-ramayana
                 <a href="#">
                   <div class="featured-item">
                     right-image.jpg
-                    <img src="<?php echo base_url('assets/images/featured_post_01.jpg'); ?>">
+                    <img src="<?php echo base_url('assets/user/images/featured_post_01.jpg'); ?>">
                     <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
                   </div>
                 </a>
                 <a href="#">
                   <div class="featured-item">
                     featured_post_01.jpg
-                    <img src="<?php echo base_url('assets/images/featured_post_01.jpg'); ?>">
+                    <img src="<?php echo base_url('assets/user/images/featured_post_01.jpg'); ?>">
                     <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
                   </div>
                 </a>
                 <a href="#">
                   <div class="featured-item">
-                  <img src="<?php echo base_url('assets/images/featured_post_01.jpg'); ?>">
+                  <img src="<?php echo base_url('assets/user/images/featured_post_01.jpg'); ?>">
                     <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
                   </div>
                 </a>
@@ -123,13 +123,13 @@ https://templatemo.com/tm-529-ramayana
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
 
-  <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/bootstrap.bundle.min.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/browser.min.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/breakpoints.min.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/transition.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/owl-carousel.js'); ?>"> </script>
-  <script src="<?php echo base_url('assets/js/custom.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/jquery.min.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/bootstrap.bundle.min.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/browser.min.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/breakpoints.min.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/transition.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/owl-carousel.js'); ?>"> </script>
+  <script src="<?php echo base_url('assets/user/js/custom.js'); ?>"> </script>
 
 </body>
 

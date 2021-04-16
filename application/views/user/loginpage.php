@@ -6,10 +6,10 @@
 <head>
 <meta charset="utf-8">
 <title>Login Page</title>
-<link rel="stylesheet" href="<?php echo base_url('assets/css/stylelogin.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/worldwide.css'); ?>">
-<link rel="stylesheet" href="<?php echo base_url('assets/css/index.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/stylelogin.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/font-awesome.min.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/worldwide.css'); ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/user/css/index.css'); ?>">
 </head>
 <body>
 <div id="wb_header">
