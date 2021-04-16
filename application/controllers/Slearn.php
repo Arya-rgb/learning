@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Slearn extends CI_Controller {
+class Slearn extends MY_Controller {
 
     function __construct() {
         parent::__construct();
@@ -28,7 +28,7 @@ class Slearn extends CI_Controller {
         }
     }
 
-    function login() {
+    public function login() {
     	$data['action'] = base_url($this->class .'/loginUser');
         $this->load->view('loginpage', $data);
     }
