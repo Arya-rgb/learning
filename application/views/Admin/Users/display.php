@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Custom styles for this page -->
+<link href="<?= base_url();?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -82,11 +84,13 @@
           </thead>
           <tfoot>
             <tr>
-              <th>No. </th>
-              <th>Nama </th>
-              <th>Jabatan </th>
-              <th>Tanggal Lahir </th>
-              <th>Aksi</th>
+              <th width="5%">No. </th>
+              <th>Nama Lengkap</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Headline</th>
+              <th>Tentang Saya</th>
+              <th width="15%">Aksi</th>
             </tr>
           </tfoot>
           <tbody class="row_position">
@@ -127,6 +131,8 @@
 <script type="text/javascript" src="<?= base_url();?>assets/vendor/jquery/bootbox.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="<?= base_url();?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url();?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script>
   $('.datepick').datepicker({
     autoclose: true,
