@@ -344,7 +344,7 @@ $(document).ready(function()
                     <div id="wb_headerMenu" style="display:inline-block;width:100%;z-index:3;vertical-align:top;">
                         <ul id="headerMenu">
                             <li class="active" aria-current="page">Home</li>
-                            <li><a href="<?= base_url('slearn/login');?>">Login</a></li>
+                            <li>Welcome <?php echo $this->session->userdata("username"); ?> <a href="<?= base_url('index.php/slearn/logout');  ?>">Logout</a> </li>
                             <li><a href="./services.html">Services</a></li>
                             <li><a href="./team.html">Team</a></li>
                             <li><a href="./contact.html">Contact</a></li>
@@ -429,7 +429,7 @@ $(document).ready(function()
                                 <div id="servicesCard1-card-item0"><img src="<?php echo base_url('assets/images/logo_android.png'); ?>" id="Image1"  alt="Android Development" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard1-card-item1">Android Development</div>
                                 <div id="servicesCard1-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard1-card-item3" ><a href="login">Login Untuk Mulai Belajar ></a></div>
+                                <div id="servicesCard1-card-item3" ><a href="courseAndroid">Mulai Belajar ></a></div>
                             </div>
 
                         </div>
@@ -442,7 +442,7 @@ $(document).ready(function()
                                 <div id="servicesCard2-card-item0"><img src="<?php echo base_url('assets/images/logo_html.png'); ?>" id="Image1"  alt="Web Development" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard2-card-item1">Front-End Web Developer</div>
                                 <div id="servicesCard2-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard2-card-item3">Login Untuk Mulai Belajar ></div>
+                                <div id="servicesCard2-card-item3">Mulai Belajar ></div>
                             </div>
 
                         </div>
@@ -455,7 +455,7 @@ $(document).ready(function()
                                 <div id="servicesCard3-card-item0"><img src="<?php echo base_url('assets/images/machine_learning.png'); ?>" id="Image1"  alt="Machine Learning" style="width:60px;height:50px;"></div>
                                 <div id="servicesCard3-card-item1">Machine Learning</div>
                                 <div id="servicesCard3-card-item2">Do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-                                <div id="servicesCard3-card-item3">Login Untuk Mulai Belajar ></div>
+                                <div id="servicesCard3-card-item3">Mulai Belajar ></div>
                             </div>
 
                         </div>
