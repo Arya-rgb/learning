@@ -215,11 +215,11 @@ class MY_Model extends CI_Model
 		return $data;
 	}
 
-	public function find($table = '', $cond)
-	{
-		$q = $this->db->get_where($table, $cond);
-		return $q;
-	}
+	// public function find($table = '', $cond)
+	// {
+	// 	$q = $this->db->get_where($table, $cond);
+	// 	return $q;
+	// }
 
 	function check_data($conditions = array(), $table = '')
 	{
@@ -235,15 +235,15 @@ class MY_Model extends CI_Model
 		return FALSE;
 	}
 
-	public function findfirst($table = '', $cond)
-	{
-		$q = $this->find($table, $cond);
-		if ($q->num_rows() > 0) {
-			$q = $q->result();
-			return $q[0];
-		}
-		return array();
-	}
+	// public function findfirst($table = '', $cond)
+	// {
+	// 	$q = $this->find($table, $cond);
+	// 	if ($q->num_rows() > 0) {
+	// 		$q = $q->result();
+	// 		return $q[0];
+	// 	}
+	// 	return array();
+	// }
 
 	function selectFilesByclass($id, $class)
 	{

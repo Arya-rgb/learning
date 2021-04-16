@@ -340,38 +340,38 @@ function getValue($select, $from, $where, $array = array(), $db = 'default')
 	return $hasil;
 }
 
-function Form_review($posisi = '', $indikator_id, $parent_id = '', $kd_loker, $modul = '', $tabel = '', $idname = '', $dbname = 'default', $adj = '1', $role_user, $kategori, $loker_review)
-{
-	$CI = &get_instance();
-	// if (!in_array($modul, array('rpcabang', 'rpkri', 'riskcontrol'))) {
-	$simpan = 'SimpanReview';
-	// }else{
-	// $simpan = 'ProsesReview';
-	// }
+// function Form_review($posisi = '', $indikator_id, $parent_id = '', $kd_loker, $modul = '', $tabel = '', $idname = '', $dbname = 'default', $adj = '1', $role_user, $kategori, $loker_review)
+// {
+// 	$CI = &get_instance();
+// 	// if (!in_array($modul, array('rpcabang', 'rpkri', 'riskcontrol'))) {
+// 	$simpan = 'SimpanReview';
+// 	// }else{
+// 	// $simpan = 'ProsesReview';
+// 	// }
 
-	$rdir = $CI->session->userdata('rdir');
-	$this_url = $CI->session->userdata('s_url');
-	$url = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : (!empty($rdir) ? site_url($rdir) : site_url(''));
-	$data = array(
-		'posisi' => $posisi,
-		'tabel' => $tabel,
-		'adj' => $adj,
-		'idname' => $idname,
-		'dbname' => $dbname,
-		'indikator_id' => $indikator_id,
-		'kd_loker' => $kd_loker,
-		'role_user' => $role_user,
-		'kategori' => $kategori,
-		'loker_review' => $loker_review,
-		'parent_id' => $parent_id,
-		'modul' => $modul,
-		'url' => $url,
-		'uri_segment' => $CI->uri->uri_string(),
-		'action_review' => site_url($this_url . '/' . $simpan),
-	);
+// 	$rdir = $CI->session->userdata('rdir');
+// 	$this_url = $CI->session->userdata('s_url');
+// 	$url = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : (!empty($rdir) ? site_url($rdir) : site_url(''));
+// 	$data = array(
+// 		'posisi' => $posisi,
+// 		'tabel' => $tabel,
+// 		'adj' => $adj,
+// 		'idname' => $idname,
+// 		'dbname' => $dbname,
+// 		'indikator_id' => $indikator_id,
+// 		'kd_loker' => $kd_loker,
+// 		'role_user' => $role_user,
+// 		'kategori' => $kategori,
+// 		'loker_review' => $loker_review,
+// 		'parent_id' => $parent_id,
+// 		'modul' => $modul,
+// 		'url' => $url,
+// 		'uri_segment' => $CI->uri->uri_string(),
+// 		'action_review' => site_url($this_url . '/' . $simpan),
+// 	);
 
-	$CI->load->view('common/form_review', $data, FALSE);
-}
+// 	$CI->load->view('common/form_review', $data, FALSE);
+// }
 function text_area($text = null)
 {
 	return str_replace(array('\r', '\n'), array(chr(13), chr(10)), str_replace("\\\\", "\\", str_replace("\'", "'", $text)));
@@ -389,23 +389,23 @@ function tgl_eng_to_ind($tgl)
 	}
 	return $xreturn_;
 }
-function newNotif($role_id = '', $kd_loker)
-{
-	// $t       = new notification;
-	$CI      = &get_instance();
-	$CI->load->model('master_model');
-	if (empty($role_id)) {
-		$role_id = $CI->session->userdata('s_id_role');
-	}
+// function newNotif($role_id = '', $kd_loker)
+// {
+// 	// $t       = new notification;
+// 	$CI      = &get_instance();
+// 	$CI->load->model('master_model');
+// 	if (empty($role_id)) {
+// 		$role_id = $CI->session->userdata('s_id_role');
+// 	}
 
-	return $CI->master_model->show_notif([
-		'st_viewed' => 0,
-		'action_to_do' => 'R',
-		'kd_loker' => $kd_loker
-	]);
+// 	return $CI->master_model->show_notif([
+// 		'st_viewed' => 0,
+// 		'action_to_do' => 'R',
+// 		'kd_loker' => $kd_loker
+// 	]);
 
-	// return $CI->master_model->data(null, 't_notification', array('role_id'   => $role_id, 'kd_loker' => $kd_loker, 'st_viewed' => 0, 'action_to_do' => 'R'))->order_by('created_at', 'DESC')->get();
-}
+// 	// return $CI->master_model->data(null, 't_notification', array('role_id'   => $role_id, 'kd_loker' => $kd_loker, 'st_viewed' => 0, 'action_to_do' => 'R'))->order_by('created_at', 'DESC')->get();
+// }
 
 function get_format($num, $f = 'nominal', $dec = 0, $blk = '.', $kom = ',')
 {
