@@ -18,11 +18,13 @@ class MY_Controller extends CI_Controller
         $this->load->model('master_model');
     }
 
-    public function load_template($template = '', $view = '', $view_data = array())
+    public function load_template($template = '', $view = '', $view_data = array(), $active = '')
     {
-        !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
-        $this->set('users', base_url('admin/users'));
-        return $this->load->view($template, $this->template_data);
+      $this->template_data['active'] = $active;
+      !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
+      $this->set('users', base_url('admin/users'));
+      $this->set('course', base_url('admin/course'));
+      return $this->load->view($template, $this->template_data);
     }
 
     function set($name, $value)
