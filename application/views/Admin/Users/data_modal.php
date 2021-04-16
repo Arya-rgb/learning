@@ -1,6 +1,6 @@
 <?php echo form_open_multipart($simpan, array('name' => 'modal-biodata', 'id' => 'modal-biodata')); ?>
   <div class="modal-header">
-    <h5 class="modal-title" id="ModalLabelSmall"><b>Data Biodata</b></h5>
+    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Users</b></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -19,6 +19,14 @@
         <?php echo form_input($data, !empty($data['username']) ? $data['username'] : '', 'class="form-control form-control-user" name="username"');?>
       </div>
     </div>
+    <?php if (empty($data['id'])) { ?>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label>Password</label>
+          <?php echo form_password($data, !empty($data['password']) ? $data['password'] : '', 'class="form-control form-control-user" name="password"');?>
+        </div>
+      </div>
+    <?php } ?>
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Email</label>
@@ -34,7 +42,7 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Tentang Saya</label>
-        <?php echo form_input($data, !empty($data['tentang_saya']) ? $data['tentang_saya'] : '', 'class="form-control form-control-user" name="tentang_saya"');?>
+        <?php echo form_textarea($data, !empty($data['tentang_saya']) ? $data['tentang_saya'] : '', 'class="form-control form-control-user" name="tentang_saya"');?>
       </div>
     </div>
   </div>
@@ -69,7 +77,7 @@
                setTimeout(function () {
                  return hasil["status"];
                }, 1500);
-               $('#ModalSmall').modal('hide');
+               $('#ModalLarge').modal('hide');
                setTimeout(function () {
                  location.reload(true);
                }, 1500);

@@ -35,9 +35,4 @@ class Users_model extends MY_Model {
 		return $this->db->update();
 	}
 
-	public function delete_data($where){
-		$this->db->where($where);
-        return $this->db->delete('biodata');
-	}
-
 }

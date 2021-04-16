@@ -312,7 +312,6 @@ function posisi($date)
 	$data['tgl'] = date('d', strtotime($date));
 	$data['bulan'] = date('n', strtotime($date));
 	$data['tahun'] = date('Y', strtotime($date));
-	dd($data);
 
 	return $data;
 }

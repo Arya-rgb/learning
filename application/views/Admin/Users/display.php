@@ -1,17 +1,10 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- Custom styles for this page -->
-<link href="<?= base_url();?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-  <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-  <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      <h6 class="m-0 font-weight-bold text-primary"><?=$judul;?></h6>
     </div>
     <div class="card-body">
       <!-- <div class="row">
@@ -70,8 +63,8 @@
       </div>
       <br>
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
+        <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
               <th>Nama Lengkap</th>
@@ -82,17 +75,6 @@
               <th width="15%">Aksi</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th width="5%">No. </th>
-              <th>Nama Lengkap</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Headline</th>
-              <th>Tentang Saya</th>
-              <th width="15%">Aksi</th>
-            </tr>
-          </tfoot>
           <tbody class="row_position">
             <?php $no=0; foreach ($data['data'] as $key => $value) { $no++; ?>
               <?php if ($data['status'] == 200) { ?>
@@ -104,6 +86,9 @@
                     <td><?= $value['headline'];?></td>
                     <td><?= $value['tentang_saya'];?></td>
                     <td>
+                      <button href="#" id="<?=$value['id'];?>" class="btn btn-info btn-sm resetPassword">
+                        Reset Password
+                      </button>
                       <a href="#" id="<?=$value['id'];?>" class="btn btn-info btn-circle btn-sm getModal">
                         <i class="fas fa-info-circle"></i>
                       </a>
@@ -124,44 +109,10 @@
 
 </div>
 <!-- /.container-fluid -->
-
-<script type="text/javascript" src="<?= base_url();?>assets/vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>assets/js/custom.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>assets/vendor/jquery/bootbox.min.js"></script>
+<script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-<script src="<?= base_url();?>assets/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script>
-  $('.datepick').datepicker({
-    autoclose: true,
-    minViewMode: 2,
-    format: 'yyyy',
-    orientation: 'bottom auto'
-  }).next().on('click', function() {
-    $(this).prev().focus();
-  });
-
-  $('.datepickYear').datepicker({
-    autoclose: true,
-    minViewMode: 2,
-    orientation: 'bottom auto'
-  }).next().on('click', function() {
-    $(this).prev().focus();
-  });
-
-  $( ".row_position" ).sortable({
-          delay: 150,
-          stop: function() {
-              var selectedData = new Array();
-              $('.row_position>tr').each(function() {
-                  selectedData.push($(this).attr("id"));
-              });
-              updateOrder(selectedData);
-          }
-      });
-
   function updateOrder(data) {
     bootbox.confirm("Apakah anda yakin akan mengubah urutan ini?", function(result){
       if(result == true) {
@@ -186,21 +137,38 @@
   }
 
   $(document).ready(function(){
-    $('.datepick').datepicker({
-      autoclose: true,
-      minViewMode: 2,
-      format: 'yyyy',
-      orientation: 'bottom auto'
-    }).next().on('click', function() {
-      $(this).prev().focus();
-    });
-
-    $('.datepickYear').datepicker({
-      autoclose: true,
-      minViewMode: 2,
-      orientation: 'bottom auto'
-    }).next().on('click', function() {
-      $(this).prev().focus();
+    $(".resetPassword").click(function(event){
+      var id = $(this).attr('id');
+      bootbox.confirm("Apakah anda yakin akan me reset password dengan username ini?", function(result){
+        if(result == true) {
+          $.ajax({
+              url: "<?=$get_reset_password;?>",
+              method: "POST",
+              data: {id:id},
+              success: function(res){
+                var hasil = $.parseJSON(res);
+                if (hasil["status"] == 200) {
+                   toastr.success(hasil["pesan"]);
+                   setTimeout(function () {
+                     return hasil["status"];
+                   }, 1500);
+                   setTimeout(function () {
+                     location.reload(true);
+                   }, 1500);
+                 }else{
+                   toastr.error(hasil["pesan"]);
+                   result = false;
+                   return hasil["status"];
+                 }
+              },
+              error: function (res) {
+                toastr.error("Data tidak dapat dihapus.");
+                result = false;
+                return false;
+              },
+          });
+        }
+      });
     });
 
     $(".getModal").click(function(event){
@@ -210,8 +178,8 @@
             method: "POST",
             data: {id:id},
             success: function(data){
-                $('#dataModalSmall').html(data);
-                $('#ModalSmall').modal('show');
+                $('#dataModalLarge').html(data);
+                $('#ModalLarge').modal('show');
             }
         });
       });
@@ -249,5 +217,6 @@
         }
       });
     });
+
   });
 </script>

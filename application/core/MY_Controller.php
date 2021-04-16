@@ -21,9 +21,7 @@ class MY_Controller extends CI_Controller
     public function load_template($template = '', $view = '', $view_data = array())
     {
         !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
-        $this->set('logout', base_url('login/logout'));
-        $this->set('users', base_url('users'));
-        $this->set('animasi', base_url('animasi'));
+        $this->set('users', base_url('admin/users'));
         return $this->load->view($template, $this->template_data);
     }
 
