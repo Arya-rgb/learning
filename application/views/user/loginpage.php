@@ -32,7 +32,7 @@
     </div>
 <div class="container">
   <section id="content">
-   <form action="<?= $action ?>" method="post">
+   <form action="./loginUser" method="post">
       <h1>Login Form</h1>
       <div>
         <input name="username" type="text" placeholder="Username" required="" id="username" />

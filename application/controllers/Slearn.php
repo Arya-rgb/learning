@@ -5,7 +5,7 @@ class Slearn extends MY_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('m_data');
+        $this->load->model('usermodel/m_data');
         $this->load->helper('url');
         $this->load->helper('email');
 
@@ -15,22 +15,18 @@ class Slearn extends MY_Controller {
 
     }
 
-    function user() {
-        $data['testtable'] = $this->m_data->testdata()->result();
-        $this->load->view('v_usertest', $data);
-    }
 
     function index() {
         if($this->session->userdata("token") != NULL) {
-            $this->load->view('dashboardUser.php');
+            $this->load->view('user/dashboardUser.php');
         } else {
-            $this->load->view('dashboard.php');
+            $this->load->view('user/dashboard.php');
         }
     }
 
     public function login() {
     	$data['action'] = base_url($this->class .'/loginUser');
-        $this->load->view('loginpage', $data);
+        $this->load->view('user/loginpage', $data);
     }
 
     function loginUser() {
@@ -54,7 +50,7 @@ class Slearn extends MY_Controller {
             );
 
             $this->session->set_userdata($data_session);
-            $this->load->view('dashboardUser.php');
+            $this->load->view('user/dashboardUser.php');
 
          } else {
 
@@ -101,7 +97,7 @@ class Slearn extends MY_Controller {
 
         function courseAndroid() {
             if($this->session->userdata("token") != NULL) {
-                $this->load->view('course.php');
+                $this->load->view('course/course.php');
             } else {
                 echo '<script language="javascript">';
                 echo 'alert("Akses Dilarang !")';
@@ -110,7 +106,7 @@ class Slearn extends MY_Controller {
     }
     function courseAndroid2() {
         if($this->session->userdata("token") != NULL) {
-            $this->load->view('course2.php');
+            $this->load->view('course/course.php');
         } else {
             echo '<script language="javascript">';
             echo 'alert("Akses Dilarang !")';
@@ -120,7 +116,7 @@ class Slearn extends MY_Controller {
 
 function courseAndroid3() {
     if($this->session->userdata("token") != NULL) {
-        $this->load->view('course3.php');
+        $this->load->view('user/course3.php');
     } else {
         echo '<script language="javascript">';
         echo 'alert("Akses Dilarang !")';
@@ -130,7 +126,7 @@ function courseAndroid3() {
 
 function courseAndroid4() {
     if($this->session->userdata("token") != NULL) {
-        $this->load->view('course4.php');
+        $this->load->view('user/course4.php');
     } else {
         echo '<script language="javascript">';
         echo 'alert("Akses Dilarang !")';
