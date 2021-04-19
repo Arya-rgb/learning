@@ -22,6 +22,11 @@ class MY_Controller extends CI_Controller
     {
       $this->template_data['active'] = $active;
       !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
+      $header = $this->master_model->data('*', 'm_menu', ['target' => NULL, 'url' => NULL], [], ['id_parent' => [NULL, 0]])->get()->result();
+      // dd($header);
+      foreach ($header as $key => $value) {
+        // code...
+      }
       $this->set('users', base_url('admin/users'));
       $this->set('course', base_url('admin/course'));
       $this->set('menu', base_url('admin/menu'));
