@@ -17,7 +17,7 @@
       </div>
       <br>
       <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-striped table-bordered" id="" width="100%" cellspacing="0">
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>

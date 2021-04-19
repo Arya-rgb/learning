@@ -40,7 +40,7 @@ class Menu extends MY_Controller {
   public function get_modal()
 	{
     $id = $this->input->post('id');
-    if ($id != '') {
+    if ($id != '') {      
       $this->model->id = $id;
       $get = $this->model->get_data('m_menu');
       $response['pesan'] = 'data tidak ada';

@@ -14,9 +14,14 @@ class Menu_model extends MY_Model {
 	{
 		$this->db->select('*');
 		$this->db->from($table);
-		$this->db->where(['id_parent' => NULL, 'target' => NULL, 'url' => NULL]);
 		// $this->db->order_by('id', 'DESC');
-		return $this->db->get();
+		if(!empty($this->id)){
+			$this->db->where(['id' => $this->id]);
+		}else{
+			$this->db->where(['id_parent' => NULL, 'target' => NULL, 'url' => NULL]);
+		} 
+
+		return($this->db->get());
 	}
 
 	public function get_data_child($table, $id)
