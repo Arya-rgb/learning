@@ -83,38 +83,41 @@ class Course extends MY_Controller {
       $respones['status'] = 404;
       $response['pesan']  = validation_errors();
     }else {
-      $cek_uploads = uploadVideo();
-      if ($cek_uploads['pesan'] == FALSE) {
-        $respones['status'] = 404;
-        $response['pesan']  = 'File tidak bisa di upload!';
+      if ($_FILES['url_video']['name'] == '') {
+        $url_video = $this->input->post('url_video_old');
+        $type_video = $this->input->post('type_video_old');
       }else{
-        $where['id'] = $this->input->post('id');
-        $data = array(
-          'judul' => $this->input->post('judul'),
-          'sub_judul' => $this->input->post('sub_judul'),
-          'deskripsi' => $this->input->post('deskripsi'),
-          'url_video' => $cek_uploads['nama_file'],
-        );
-        if ($where['id'] != '') {
-          $update = $this->model->update_data('ls_m_course', $data, $where);
-          $response['pesan'] = 'Gagal Melakukan Update Users';
-          $response['status'] = 404;
-          if ($update) {
-            $response['pesan'] = 'Berhasil Melakukan Update Users';
-            $response['status'] = 200;
-          }
-        }else{
-          $create = $this->model->create_data('ls_m_course', $data);
-          $id_user = $this->db->insert_id();
-          $response['pesan'] = 'Data Users Tidak Berhasil Ditambahkan';
-          $response['status'] = 404;
-          if ($create != 0) {
-            // $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
-            // $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
-            // $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
-            $response['pesan'] = 'Data Users Berhasil Ditambahkan';
-            $response['status'] = 200;
-          }
+        $cek_uploads = uploadVideo('url_video');
+        $url_video = $cek_uploads['nama_file'];
+        $type_video = $cek_uploads['type_file'];
+      }
+      $where['id'] = $this->input->post('id');
+      $data = array(
+        'judul' => $this->input->post('judul'),
+        'sub_judul' => $this->input->post('sub_judul'),
+        'deskripsi' => $this->input->post('deskripsi'),
+        'url_video' => $url_video,
+        'type_video' => $type_video,
+      );
+      if ($where['id'] != '') {
+        $update = $this->model->update_data('ls_m_course', $data, $where);
+        $response['pesan'] = 'Gagal Melakukan Update Users';
+        $response['status'] = 404;
+        if ($update) {
+          $response['pesan'] = 'Berhasil Melakukan Update Users';
+          $response['status'] = 200;
+        }
+      }else{
+        $create = $this->model->create_data('ls_m_course', $data);
+        $id_user = $this->db->insert_id();
+        $response['pesan'] = 'Data Users Tidak Berhasil Ditambahkan';
+        $response['status'] = 404;
+        if ($create != 0) {
+          // $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
+          // $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
+          // $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
+          $response['pesan'] = 'Data Users Berhasil Ditambahkan';
+          $response['status'] = 200;
         }
       }
     }
@@ -129,17 +132,9 @@ class Course extends MY_Controller {
 				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
 				return false;
 			}
-      if ($_FILES['url_video']['name'] == '') {
-				$this->form_validation->set_message('unique', 'Anda Belum Melakukan Upload Video !');
-				return false;
-			}
 		}else{
 			if ($this->master_model->check_data(['judul' => $judul],'ls_m_course')) {
 				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
-				return false;
-			}
-      if ($_FILES['url_video']['name'] == '') {
-				$this->form_validation->set_message('unique', 'Anda Belum Melakukan Upload Video !');
 				return false;
 			}
 		}

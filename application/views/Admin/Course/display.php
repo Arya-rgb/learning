@@ -21,11 +21,11 @@
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
-              <th>Judul</th>
-              <th>Sub Judul</th>
-              <th>Deskripsi</th>
-              <th>Video</th>
-              <th>Aksi</th>
+              <th width="15%">Judul</th>
+              <th width="15%">Sub Judul</th>
+              <th width="28%">Deskripsi</th>
+              <th width="29%">Video</th>
+              <th width="8%">Aksi</th>
             </tr>
           </thead>
           <tbody class="row_position">
@@ -35,12 +35,19 @@
                     <td><?= $no;?>.</td>
                     <td><?= $value['judul'];?></td>
                     <td><?= $value['sub_judul'];?></td>
-                    <td><?= $value['deskripsi'];?></td>
                     <td>
-                      <video width="320" height="240" controls>
-                        <source src="<?= $value['url_video'];?>" type="video/mp4">
-                        <!-- <source src="movie.ogg" type="video/ogg"> -->
-                        <!-- Your browser does not support the video tag. -->
+                      <div id="less">
+                        <?= character_limiter($value['deskripsi'], 200);?>
+                        <a href="#" id="load_more">Load More</a>
+                      </div>
+                      <div id="more" style="display:none">
+                        <?= $value['deskripsi'];?>
+                        <a href="#" id="load_less">Load Less</a>
+                      </div>
+                    </td>
+                    <td>
+                      <video width="300" height="200" controls>
+                        <source src="<?= $value['url_video'];?>" type="<?= $value['type_video'];?>">
                       </video>
                     </td>
                     <td>
@@ -69,6 +76,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script>
   $(document).ready(function(){
+    $("#load_more").click(function(){
+      $("#more").show();
+      $("#less").hide();
+    });
+    $("#load_less").click(function(){
+      $("#less").show();
+      $("#more").hide();
+    });
+
     $(".getModal").click(function(event){
       var id = $(this).attr('id');
         $.ajax({

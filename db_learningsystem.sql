@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 05:48 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Host: localhost
+-- Waktu pembuatan: 19 Apr 2021 pada 10.37
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,81 +24,120 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_user`
+-- Struktur dari tabel `ls_m_course`
 --
 
-CREATE TABLE `data_user` (
+CREATE TABLE `ls_m_course` (
   `id` int(11) NOT NULL,
-  `nama_lengkap` varchar(50) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `headline` varchar(50) NOT NULL,
-  `tentang_saya` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `judul` varchar(255) DEFAULT NULL,
+  `sub_judul` varchar(255) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `url_video` text DEFAULT NULL,
+  `type_video` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `data_user`
+-- Dumping data untuk tabel `ls_m_course`
 --
 
-INSERT INTO `data_user` (`id`, `nama_lengkap`, `username`, `password`, `email`, `headline`, `tentang_saya`) VALUES
-(1, 'Dicky Arya Pratama', 'dicky_arya', 'arya654321', 'dickyarya.pratama@hotmail.com', 'Technology Enthusiast', 'Aku adalah seorang technology enthusiast, menyukai hal-hal baru dan juga seorang fast learner, ada 2'),
-(2, 'Ackerman', 'ackerman11', 'ackerman123', 'ackerman@gmail.com', 'Most Brutal Person', 'nothing'),
-(3, 'asdasdas', 'asdasasdasd', 'asdas', 'dickyarya17@outlook.com', 'asdaaS', 'sdasdas'),
-(4, 'asas', 'asa', 'asa', 'asas', 'asa', 'asa'),
-(5, 'Arya Pratama', 'arya654321', 'arya654321', 'arya@gmail.com', 'programmer', 'cool'),
-(6, 'asd', 'asdas', 'asdas', 'asasdas', 'asd', 'asda'),
-(7, 'as', 'AS', 'asA', 'asASa', 'ASas', 'ASa'),
-(8, 'asdasdas', 'as', 'AS', 'as', 'AS', 'ASa'),
-(9, 'dicky arya p', 'testmd5', 'a28c379d216d6b113ec1938d9', 'arya@yahoo.co.id', 'smartboy', 'nothing'),
-(10, 'testmd5', 'testmd5euy', 'a28c379d216d6b113ec1938d9b4fdab2', 'arya@yahoo.co.il', 'aryaa', 'huhu'),
-(11, 'Dicky Arya Pratama', 'arya_ackerman', 'a28c379d216d6b113ec1938d9b4fdab2', 'dickyarya@yahoo.com', 'Programmer', 'I am just a man who interested in code ');
+INSERT INTO `ls_m_course` (`id`, `judul`, `sub_judul`, `deskripsi`, `url_video`, `type_video`) VALUES
+(1, 'Pesawat', 'Asal Usul Pesawat Terbang', '<p>Di Amerika Serikat, Penerbangan pesawat pertama kali dilakukan oleh Wright bersaudara pada 1903. Mereka merancang pesawatnya sendiri. Pesawat ini hanya cukup untuk satu orang. Di Inggris, seorang penemu pesawat terbang bernama Samuel F. Cody berhasil melakukan penerbangan pada 1910. Waktu itu, bentuk pesawat yang diciptakan masih sangat sederhana. belum seperti yang bisa dinikmati saat ini.</p>\r\n\r\n<p>Setelah Perang Dunia I, masa penerbangan sipil mulai tumbuh dan mengalami perkembangan cepat. Akhirnya banyak pesawat yang diproduksi untuk transportasi sipil. Selain itu, mulai juga bermunculan perusahaan penerbangan di Eropa dan Amerika. Seiring perkembangan zaman, bentuk dan mesin pesawat terbang mulai disempurnakan.</p>\r\n\r\n<p>Hal ini dilakukan untuk memenuhi kebutuhan transportasi udara. Pada 1949, dibuatlah pesawat komersial. Pesawat ini ukurannya lebih besar daripada pesawat-pesawat sebelumnya.</p>', 'http://localhost/learning/uploads/course_video/Persiapan_Lepas_landas_video_5_detik3.mp4', 'video/mp4');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testtable`
+-- Struktur dari tabel `ls_m_user`
 --
 
-CREATE TABLE `testtable` (
-  `id` varchar(5) NOT NULL,
-  `nama` varchar(20) NOT NULL,
-  `kelas` varchar(20) NOT NULL,
-  `alamat` varchar(20) NOT NULL
+CREATE TABLE `ls_m_user` (
+  `id` int(11) NOT NULL,
+  `nama_lengkap` varchar(50) DEFAULT NULL,
+  `username` varchar(25) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `headline` text DEFAULT NULL,
+  `tentang_saya` text DEFAULT NULL,
+  `role` enum('admin','user') DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ls_m_user`
+--
+
+INSERT INTO `ls_m_user` (`id`, `nama_lengkap`, `username`, `password`, `email`, `headline`, `tentang_saya`, `role`) VALUES
+(1, 'Farhan Maulana', 'farhan', 'f7f1b8f0529d71e9fa8e5407fc652883', 'farhanmaulana88@gmail.com', 'Test', 'Test', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `m_menu`
+--
+
+CREATE TABLE `m_menu` (
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) DEFAULT NULL,
+  `nama_menu` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `target` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `testtable`
+-- Dumping data untuk tabel `m_menu`
 --
 
-INSERT INTO `testtable` (`id`, `nama`, `kelas`, `alamat`) VALUES
-('B1', 'Dicky Arya Pratama', 'Informatika', 'Padalarang');
+INSERT INTO `m_menu` (`id`, `id_parent`, `nama_menu`, `icon`, `target`, `url`) VALUES
+(1, NULL, 'Interface', 'x', NULL, NULL),
+(2, 1, 'Master', '<i class=\"fas fa-fw fa-cog\"></i>', 'Master', NULL),
+(3, 2, 'User', NULL, NULL, 'admin/users'),
+(4, 2, 'Course', NULL, NULL, 'admin/course'),
+(5, NULL, 'Addon', NULL, NULL, NULL),
+(6, 5, 'Page', NULL, 'Page', NULL),
+(7, 6, 'Login', NULL, NULL, 'admin/login');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `data_user`
+-- Indeks untuk tabel `ls_m_course`
 --
-ALTER TABLE `data_user`
+ALTER TABLE `ls_m_course`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Indeks untuk tabel `ls_m_user`
+--
+ALTER TABLE `ls_m_user`
+  ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Indeks untuk tabel `m_menu`
+--
+ALTER TABLE `m_menu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `testtable`
---
-ALTER TABLE `testtable`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `data_user`
+-- AUTO_INCREMENT untuk tabel `ls_m_course`
 --
-ALTER TABLE `data_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `ls_m_course`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `ls_m_user`
+--
+ALTER TABLE `ls_m_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `m_menu`
+--
+ALTER TABLE `m_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

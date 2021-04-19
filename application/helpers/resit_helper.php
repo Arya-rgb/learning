@@ -19,7 +19,7 @@ if (!function_exists('get_value')) {
 	}
 }
 if (!function_exists('uploadVideo')) {
-	function uploadVideo($aksi = '')
+	function uploadVideo($nama)
 		{
 			$CI = &get_instance();
 			$upload_path = 'uploads/course_video/';
@@ -30,13 +30,14 @@ if (!function_exists('uploadVideo')) {
 
 	    $CI->load->library('upload', $config);
 			$CI->upload->initialize($config);
-
-	    if (!$CI->upload->do_upload('url_video')) {
+	    if (!$CI->upload->do_upload($nama)) {
 				$response['pesan'] = FALSE;
-				$response['nama_file'] = 'default.mp4';
+				$response['nama_file'] = '';
+				$response['type_file'] = '';
 	    }else{
 					$response['pesan'] = TRUE;
 					$response['nama_file'] = base_url().$upload_path.$CI->upload->data('file_name');
+					$response['type_file'] = $CI->upload->data('file_type');
 			}
 			return $response;
 		}

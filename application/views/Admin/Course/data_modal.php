@@ -16,7 +16,7 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Sub Judul</label>
-        <?php echo form_input('sub_judul', !empty($data['sub_judul']) ? $data['sub_judul'] : '', 'class="form-control form-control-user" name="sub_judul"');?>
+        <?php echo form_input('sub_judul', !empty($data['sub_judul']) ? $data['sub_judul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">
@@ -28,7 +28,9 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Video</label>
-        <?php echo form_upload('url_video', !empty($data['url_video']) ? $data['url_video'] : '', 'class="form-control form-control-user"');?>
+        <?php echo form_upload('url_video', '', 'class="form-control form-control-user"');?>
+        <?php echo form_input('url_video_old', !empty($data['url_video']) ? $data['url_video'] : '', 'class="form-control form-control-user" hidden');?>
+        <?php echo form_input('type_video_old', !empty($data['type_video']) ? $data['type_video'] : '', 'class="form-control form-control-user" hidden');?>
       </div>
     </div>
   </div>
@@ -44,6 +46,9 @@
 </script>
 <script type="text/javascript">
   $("#simpan").click(function(){
+    for (instance in CKEDITOR.instances) {
+      CKEDITOR.instances[instance].updateElement();
+    }
     var form = $("#" + $(this).closest('form').attr('name'));
     var formdata = false;
     if (window.FormData) {
