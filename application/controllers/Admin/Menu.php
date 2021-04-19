@@ -1,22 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Course extends MY_Controller {
-  public $view    = 'Admin/Course/';
+class Menu extends MY_Controller {
+  public $view    = 'Admin/Menu/';
 	public function __construct(){
 		parent::__construct();
     // if ($this->session->userdata('status') != 'isLogin') {
     //   redirect('login');
     // }
     $this->load->database();
-		$this->load->model('Admin/Course_model','model');
+		$this->load->model('Admin/Menu_model','model');
 	}
 
 	public function index(){
     $result['data'] = $this->get();
-    $result['judul'] = 'Course List';
+    $result['judul'] = 'Konfigurasi Menu';
     $result['get_data_edit'] = base_url('admin/'.$this->class.'/get_modal');
     $result['get_data_delete'] = base_url('admin/'.$this->class.'/delete');
+    $result['controller'] = $this;
     // $result['update_list'] = base_url('admin/'.$this->class.'/update_list');
 		$this->load_template('admin/template', $this->view.'display', $result, $this->class);
 	}
@@ -24,11 +25,11 @@ class Course extends MY_Controller {
 	public function get($id = '')
 	{
 		$this->model->id = $id == '' ? $this->input->post('id') : $id;
-		$get = $this->model->get_data('ls_m_course');
+		$get = $this->model->get_data('m_menu');
     $response['pesan'] = 'Data Tidak Ditemukan';
     $response['status'] = 404;
     $response['data'] = array();
-		if ($get -> num_rows() > 0) {
+		if ($get->num_rows() > 0) {
         $response['pesan'] = 'Data Ditemukan';
         $response['status'] = 200;
         $response['data'] = $get->result_array();
@@ -41,7 +42,7 @@ class Course extends MY_Controller {
     $id = $this->input->post('id');
     if ($id != '') {
       $this->model->id = $id;
-      $get = $this->model->get_data('ls_m_course');
+      $get = $this->model->get_data('m_menu');
       $response['pesan'] = 'data tidak ada';
       $response['status'] = 404;
       $response['data'] = array();
@@ -65,10 +66,8 @@ class Course extends MY_Controller {
 	public function save()
 	{
     $conf = array(
-            array('field' => 'judul', 'label' => 'Judul', 'rules' => 'trim|required|callback_unique'),
-            array('field' => 'sub_judul', 'label' => 'Sub Judul', 'rules' => 'trim|required'),
-            array('field' => 'deskripsi', 'label' => 'Deskripsi', 'rules' => 'trim|required'),
-            // array('field' => 'url_video', 'label' => 'Url Video', 'rules' => 'trim|required'),
+            array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
+            array('field' => 'icon', 'label' => 'Icon', 'rules' => 'trim|required'),
         );
 
     $this->form_validation->set_rules($conf);
@@ -83,38 +82,33 @@ class Course extends MY_Controller {
       $respones['status'] = 404;
       $response['pesan']  = validation_errors();
     }else {
-      $cek_uploads = uploadVideo();
-      if ($cek_uploads['pesan'] == FALSE) {
-        $respones['status'] = 404;
-        $response['pesan']  = 'File tidak bisa di upload!';
+      $where['id'] = $this->input->post('id');
+      $data = array(
+        'id_parent' => $this->input->post('id_parent'),
+        'nama_menu' => $this->input->post('nama_menu'),
+        'icon' => $this->input->post('icon'),
+        'target' => $this->input->post('target'),
+        'url' => $this->input->post('url'),
+      );
+      if ($where['id'] != '') {
+        $update = $this->model->update_data('m_menu', $data, $where);
+        $response['pesan'] = 'Gagal Melakukan Update Menu';
+        $response['status'] = 404;
+        if ($update) {
+          $response['pesan'] = 'Berhasil Melakukan Update Menu';
+          $response['status'] = 200;
+        }
       }else{
-        $where['id'] = $this->input->post('id');
-        $data = array(
-          'judul' => $this->input->post('judul'),
-          'sub_judul' => $this->input->post('sub_judul'),
-          'deskripsi' => $this->input->post('deskripsi'),
-          'url_video' => $cek_uploads['nama_file'],
-        );
-        if ($where['id'] != '') {
-          $update = $this->model->update_data('ls_m_course', $data, $where);
-          $response['pesan'] = 'Gagal Melakukan Update Users';
-          $response['status'] = 404;
-          if ($update) {
-            $response['pesan'] = 'Berhasil Melakukan Update Users';
-            $response['status'] = 200;
-          }
-        }else{
-          $create = $this->model->create_data('ls_m_course', $data);
-          $id_user = $this->db->insert_id();
-          $response['pesan'] = 'Data Users Tidak Berhasil Ditambahkan';
-          $response['status'] = 404;
-          if ($create != 0) {
-            // $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
-            // $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
-            // $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
-            $response['pesan'] = 'Data Users Berhasil Ditambahkan';
-            $response['status'] = 200;
-          }
+        $create = $this->model->create_data('m_menu', $data);
+        $id_user = $this->db->insert_id();
+        $response['pesan'] = 'Data Menu Tidak Berhasil Ditambahkan';
+        $response['status'] = 404;
+        if ($create != 0) {
+          // $getLastUrutan = $this->master_model->data('*', 'urutan_biodata')->get()->result_array();
+          // $urutan = max(array_column($getLastUrutan, 'urutan')) + 1;
+          // $this->master_model->save(['id_user' => $create, 'urutan' => $urutan], 'urutan_biodata');
+          $response['pesan'] = 'Data Menu Berhasil Ditambahkan';
+          $response['status'] = 200;
         }
       }
     }
@@ -123,23 +117,15 @@ class Course extends MY_Controller {
 
   public function unique(){
 		$id 				= $this->input->post('id');
-    $judul 		= strtolower($this->input->post('judul'));
+    $nama_menu 		= $this->input->post('nama_menu');
 		if (!empty($id)) {
-			if ($this->master_model->check_data(['id !='=> $id, 'lower(judul)' => $judul],'ls_m_course')) {
-				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
-				return false;
-			}
-      if ($_FILES['url_video']['name'] == '') {
-				$this->form_validation->set_message('unique', 'Anda Belum Melakukan Upload Video !');
+			if ($this->master_model->check_data(['id !='=> $id, 'nama_menu' => $nama_menu],'m_menu')) {
+				$this->form_validation->set_message('unique', 'Menu Sudah Ada !');
 				return false;
 			}
 		}else{
-			if ($this->master_model->check_data(['judul' => $judul],'ls_m_course')) {
-				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
-				return false;
-			}
-      if ($_FILES['url_video']['name'] == '') {
-				$this->form_validation->set_message('unique', 'Anda Belum Melakukan Upload Video !');
+			if ($this->master_model->check_data(['nama_menu' => $nama_menu],'m_menu')) {
+				$this->form_validation->set_message('unique', 'Menu Sudah Ada !');
 				return false;
 			}
 		}
@@ -147,10 +133,49 @@ class Course extends MY_Controller {
 		return true;
 	}
 
+  public function all_child($id, $pading = 20){
+      // $condition = array('b.id_parent' => $id);
+			$param_query = $this->model->get_data_child('m_menu', $id);
+			if ($param_query->num_rows() > 0) {
+					foreach ($param_query->result() as $row) {
+							$data = array(
+									'id' => $row->id,
+									'nama_menu' => $row->nama_menu,
+									'pading' => $pading,
+							);
+							echo $this->load->view('admin/'.$this->class.'/child',$data, TRUE);
+							if($this->have_child($row->id)){
+									$pad = $pading + 20;
+									$condition2 = ['b.id_parent' => $row->id];
+									$this->all_child($row->id, $pad);
+							}
+					}
+			}
+	}
+
+	public function have_child($id){
+			// $condition = array('b.id_parent' => $id);
+			$param_query = $this->model->get_data_child('m_menu', $id);
+			if ($param_query->num_rows() > 0) {
+					return TRUE;
+			}else{
+					return FALSE;
+			}
+	}
+
+  public function update_list(){
+    $posisi = $this->input->post('position');
+    $i = 0;
+    foreach ($posisi as $key => $value) {
+      $i++;
+      $this->master_model->update(['urutan' => $i], ['id_user' => $value], 'urutan_biodata');
+    }
+  }
+
 	public function delete()
   {
     $where['id'] = $this->input->post('id');
-    $status = $this->master_model->delete($where, 'ls_m_course');
+    $status = $this->master_model->delete($where, 'm_menu');
     // $urutan = $this->master_model->delete(['id_user' => $this->input->post('id')], 'urutan_biodata');
     $response['pesan'] = 'Data Gagal Dihapus';
     $response['status'] = 404;

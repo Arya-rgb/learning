@@ -7,52 +7,6 @@
       <h6 class="m-0 font-weight-bold text-primary"><?=$judul;?></h6>
     </div>
     <div class="card-body">
-      <!-- <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Auditee </label>
-            <div class="col-sm-6 input-group ">
-              <?php echo form_dropdown('auditee', '', '', 'class="form-control select2"'); ?>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Tahun </label>
-            <div class="col-sm-3 input-group date">
-              <input type="text" class="form-control datepick" data-date-format="yyyy" name="tahun_pkat" id="tahun" readonly="true">
-              <div class="input-group-append">
-                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Jenis Audit </label>
-            <div class="col-sm-6 input-group ">
-              <?php echo form_dropdown('jns_audit', '', '', 'class="form-control"'); ?>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Status </label>
-            <div class="col-sm-6 input-group ">
-              <?php echo form_dropdown('st_audit', '', 5, 'class="form-control"'); ?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="text-right">
-            <button type="button" class="btn btn-info btn-mini" onclick="load_table()"> Cari </button>
-          </div>
-        </div>
-      </div> -->
       <div align="right">
         <a href="#" class="btn btn-success btn-icon-split getModal" style="align:right;">
           <span class="icon text-white-50">
@@ -82,7 +36,13 @@
                     <td><?= $value['judul'];?></td>
                     <td><?= $value['sub_judul'];?></td>
                     <td><?= $value['deskripsi'];?></td>
-                    <td><?= $value['url_video'];?></td>
+                    <td>
+                      <video width="320" height="240" controls>
+                        <source src="<?= $value['url_video'];?>" type="video/mp4">
+                        <!-- <source src="movie.ogg" type="video/ogg"> -->
+                        <!-- Your browser does not support the video tag. -->
+                      </video>
+                    </td>
                     <td>
                       <a href="#" id="<?=$value['id'];?>" class="btn btn-info btn-circle btn-sm getModal">
                         <i class="fas fa-info-circle"></i>

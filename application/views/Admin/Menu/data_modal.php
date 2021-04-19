@@ -1,6 +1,6 @@
-<?php echo form_open_multipart($simpan, array('name' => 'modal-course', 'id' => 'modal-course')); ?>
+<?php echo form_open_multipart($simpan, array('name' => 'modal-menu', 'id' => 'modal-menu')); ?>
   <div class="modal-header">
-    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Course</b></h5>
+    <h5 class="modal-title" id="ModalLabelSmall"><b>Master Menu</b></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,26 +9,26 @@
     <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Judul</label>
-        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
+        <label>Nama Menu</label>
+        <?php echo form_input($data, !empty($data['nama_menu']) ? $data['nama_menu'] : '', 'class="form-control form-control-user" name="nama_menu"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Sub Judul</label>
-        <?php echo form_input('sub_judul', !empty($data['sub_judul']) ? $data['sub_judul'] : '', 'class="form-control form-control-user" name="sub_judul"');?>
+        <label>Icon</label>
+        <?php echo form_input($data, !empty($data['icon']) ? $data['icon'] : '', 'class="form-control form-control-user" name="icon"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Deskripsi</label>
-        <?php echo form_textarea('deskripsi', !empty($data['deskripsi']) ? $data['deskripsi'] : '', 'class="form-control form-control-user" id="ckeditor"');?>
+        <label>Parent</label>
+        <?php echo form_input($data, !empty($data['id_parent']) ? $data['id_parent'] : '', 'class="form-control form-control-user" name="id_parent"');?>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row" style="display:none;">
       <div class="col-sm-12">
-        <label>Video</label>
-        <?php echo form_upload('url_video', !empty($data['url_video']) ? $data['url_video'] : '', 'class="form-control form-control-user"');?>
+        <label>Headline</label>
+        <?php echo form_input($data, !empty($data['headline']) ? $data['headline'] : '', 'class="form-control form-control-user" name="headline"');?>
       </div>
     </div>
   </div>
@@ -39,9 +39,6 @@
 <script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-<script>
-    CKEDITOR.replace('ckeditor');
-</script>
 <script type="text/javascript">
   $("#simpan").click(function(){
     var form = $("#" + $(this).closest('form').attr('name'));

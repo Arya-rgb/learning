@@ -35,6 +35,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /application/config/config.php
 /vendor
 /node_modules
-/uploads
 /backupfiles
 /.DS_Store

@@ -68,7 +68,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Master:</h6>
+            <!-- <h6 class="collapse-header">Custom Master:</h6> -->
             <a class="collapse-item active" href="<?=$users;?>">Users</a>
             <a class="collapse-item <?php ($active == 'course') ? 'active' : '';?>" href="<?=$course;?>">Course</a>
           </div>
@@ -129,9 +129,9 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+        <a class="nav-link" href="<?=$menu;?>">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Konfigurasi Menu</span></a>
       </li>
 
       <!-- Divider -->
@@ -392,6 +392,9 @@
       </div>
     </div>
 
+    <!-- CKEDITOR -->
+    <script src="http://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url();?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
