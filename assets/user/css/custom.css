@@ -1,6 +1,5 @@
 #headerMenu {
-	font-family:Nunito;
-	font-size: 16.5px;
+	font-family: "Nunito", sans-serif !important;
 	font-weight: 700;
 	padding-left: 0;
 	padding-right: 6px;
@@ -8,4 +7,43 @@
 	padding-bottom: 25px;
 	margin-left: 14px;
 	margin-right: 14px;
+
+}
+#headerMenu > li {
+	font-size: 20px !important;
+	letter-spacing: 1.5px;
+}
+#banner-wrapper-content h1{
+	font-family: "Nunito", sans-serif !important;
+    font-weight: 800;
+	margin-bottom: 18px;
+    font-size: 60px;
+    color:#221638;
+    text-align: left;
+}
+#banner-wrapper-content p{
+    font-size: 17px;
+    color:#221638;
+}
+
+#wb_introHeading h1{
+	font-family: "Nunito", sans-serif !important;
+    font-weight: 800;
+	margin-bottom: 18px;
+    font-size: 40px;
+    color:#221638;
+    text-align: left;
+}
+#banner-wrapper-content p{
+    font-size: 17px;
+    color:#221638;
+}
+#wb_welcome {
+	/*background-image: none !important: */
+	background-color: #fefaf3 !important;
+}
+.btn-aqua{
+	color: #fff;
+    background-color: #3ea9df;
+    border-color: #3ea9df;
 }
