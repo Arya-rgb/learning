@@ -54,45 +54,37 @@
           <span>Dashboard</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+      <?php foreach ($list_menu as $key => $value) { ?>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Master</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Master:</h6> -->
-            <a class="collapse-item active" href="<?=$users;?>">Users</a>
-            <a class="collapse-item <?php ($active == 'course') ? 'active' : '';?>" href="<?=$course;?>">Course</a>
-          </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          <?= $value->nama_menu;?>
         </div>
-      </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
-      </li>
+        <?php if (!empty($value->child)) { ?>
+          <?php foreach ($value->child as $key2 => $value2) { ?>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse<?=$value2->target;?>" aria-expanded="true" aria-controls="collapse<?=$value2->target;?>">
+                <i class="fas fa-fw fa-cog"></i>
+                <span><?=$value2->nama_menu;?></span>
+              </a>
+              <div id="collapse<?=$value2->target;?>" class="collapse" aria-labelledby="heading<?=$value2->target;?>" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Custom <?=$value2->nama_menu;?>:</h6>
+                  <?php if (!empty($value2->child)) { ?>
+                    <?php foreach ($value2->child as $key3 => $value3) { ?>
+                      <a class="collapse-item" href="<?=$value3->url;?>"><?=$value3->nama_menu;?></a>
+                    <?php } ?>
+                  <?php } ?>
+                </div>
+              </div>
+            </li>
+          <?php } ?>
+        <?php } ?>
+      <?php } ?>
 
 
       <hr class="sidebar-divider d-none d-md-block">

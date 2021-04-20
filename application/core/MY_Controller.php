@@ -20,13 +20,11 @@ class MY_Controller extends CI_Controller
 
     public function load_template($template = '', $view = '', $view_data = array(), $active = '')
     {
-      $this->template_data['active'] = $active;
       !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
-      $header = $this->master_model->data('*', 'm_menu', ['target' => NULL, 'url' => NULL], [], ['id_parent' => [NULL, 0]])->get()->result();
-      // dd($header);
-      foreach ($header as $key => $value) {
-        // code...
-      }
+      $header = $this->master_model->data('*', 'm_menu', ['id_parent' => NULL])->get()->result();
+      $this->template_data['list_menu'] = $this->child($header);
+      $this->template_data['active'] = $active;
+      $this->template_data['controller'] = $this;
       $this->set('users', base_url('admin/users'));
       $this->set('course', base_url('admin/course'));
       $this->set('menu', base_url('admin/menu'));
@@ -37,4 +35,32 @@ class MY_Controller extends CI_Controller
 		{
 			$this->template_data[$name] = $value;
 		}
+
+    public function child($header){
+      $return = [];
+      if (!empty($header)) {
+        foreach ($header as $key => $value) {
+          $child = $this->master_model->data('*', 'm_menu', ['id_parent' => $value->id])->get()->result();
+          $value->child = $child;
+          $return[]=$value;
+          if ($this->grand_child($child)) {
+            $this->child($child);
+          }
+        }
+      }
+      return $return;
+    }
+
+    public function grand_child($child){
+      $return = FALSE;
+      if (!empty($child)) {
+        if (count($child) > 0) {
+          $return = TRUE;
+        }else{
+          $return = FALSE;
+        }
+      }
+      return $return;
+    }
+
 }

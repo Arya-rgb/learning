@@ -40,7 +40,7 @@ class Menu extends MY_Controller {
   public function get_modal()
 	{
     $id = $this->input->post('id');
-    if ($id != '') {      
+    if ($id != '') {
       $this->model->id = $id;
       $get = $this->model->get_data('m_menu');
       $response['pesan'] = 'data tidak ada';
@@ -84,11 +84,11 @@ class Menu extends MY_Controller {
     }else {
       $where['id'] = $this->input->post('id');
       $data = array(
-        'id_parent' => $this->input->post('id_parent'),
+        'id_parent' => $this->input->post('id_parent') != '' ? $this->input->post('id_parent') : NULL,
         'nama_menu' => $this->input->post('nama_menu'),
         'icon' => $this->input->post('icon'),
-        'target' => $this->input->post('target'),
-        'url' => $this->input->post('url'),
+        'target' => $this->input->post('target') != '' ? $this->input->post('target') : NULL,
+        'url' => $this->input->post('url') != '' ? $this->input->post('url') : NULL,
       );
       if ($where['id'] != '') {
         $update = $this->model->update_data('m_menu', $data, $where);
