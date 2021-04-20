@@ -5,6 +5,7 @@
 <title>Digital Learning System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel='stylesheet' id='ecademy-fonts-css' href='//fonts.googleapis.com/css2?family=Nunito%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900%3B1%2C600%3B1%2C700%3B1%2C800%3B1%2C900&#038;display=swap&#038;ver=1.0.0' type='text/css' media='screen' />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 <link rel="stylesheet" href="<?php echo base_url('assets/user/css/font-awesome.min.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/user/css/worldwide.css'); ?>">
 <link rel="stylesheet" href="<?php echo base_url('assets/user/css/index.css'); ?>">
@@ -403,25 +404,47 @@ $(document).ready(function()
                 <path class="divider-fill" d="M288.42 342.23L0 304.17V355h385.18l-87.3-11.52-9.46-1.25z" />
             </svg>
         </div>
-        <div id="welcome">
-            <div class="col-1">
-                <div id="wb_welcomeText">
-                    <p style="font-size:15px;line-height:16.5px;color:#FFFFFF;"><span style="font-size:32px;line-height:36px;font-weight:bold;">Belajar Coding Online</span></p>
-                    <p style="font-size:16px;line-height:18px;color:#FFFFFF;">Nikmati pembelajaran coding online yang berkualitas dan bersetandar internasional gratis.</p>
+            <!-- <div class="col-1">
+                <div id="banner-wrapper-content">
+                    <h1>Belajar Coding Online</h1>
+                    <p>Nikmati pembelajaran coding online yang berkualitas dan bersetandar internasional gratis.</p>
                 </div>
+            </div> -->
+            <div class="hero-banner-area">
+            <div class="container-fluid">
+            <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12">
+            <div class="hero-banner-content">
+            <div id="banner-wrapper-content">
+              <h1>Bangun Karirmu Sebagai Developer Profesional</h1>
+              <p>Nikmati pembelajaran coding online yang berkualitas dan bersetandar internasional gratis.</p>
             </div>
-        </div>
+              <a href="" class="btn btn-lg btn-warning text-left"><i class="flaticon-user"></i>Join For Free<span style="top: 141.75px; left: 208.5px;"></span></a>
+            </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+            <div class="hero-banner-image">
+            <img src="<?= base_url('assets/user/images/main-banner3.png'); ?>" alt="Build Development Skills With eCademy Any Time, Anywhere">
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="banner-shape19">
+            <img src="https://themes.envytheme.com/ecademy/wp-content/uploads/2020/06/banner-shape20.png" alt="shape image">
+            </div>
+            <div class="divider"></div>
+            </div>
     </div>
     <div id="wb_intro">
         <div id="intro">
             <div class="row">
                 <div class="col-1">
                     <div class="col-1-padding">
-                        <div id="wb_introHeading" style="display:inline-block;width:100%;z-index:6;">
-                            <h1 id="introHeading">Dapatkan Karir Impian Dengan Belajar Pemrograman</h1>
+                        <div id="wb_introHeading">
+                            <h1>Dapatkan Karir Impian Dengan Belajar Pemrograman</h1>
                         </div>
                         <div id="wb_introText">
-                            <p style="color:#969696;">Materi di susun dengan teratur dan mudah di fahami, mulai lah belajar sekarang juga dan menjadi developer handal.</p>
+                            <p>Materi di susun dengan teratur dan mudah di fahami, mulai lah belajar sekarang juga dan menjadi developer handal.</p>
                         </div>
                     </div>
                 </div>
