@@ -68,7 +68,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse<?=$value2->target;?>" aria-expanded="true" aria-controls="collapse<?=$value2->target;?>">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="<?=$value2->icon;?>"></i>
                 <span><?=$value2->nama_menu;?></span>
               </a>
               <div id="collapse<?=$value2->target;?>" class="collapse" aria-labelledby="heading<?=$value2->target;?>" data-parent="#accordionSidebar">

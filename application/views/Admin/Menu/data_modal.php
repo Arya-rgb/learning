@@ -6,29 +6,43 @@
     </button>
   </div>
   <div class="modal-body">
-    <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
+    <input type="hidden" name="id" id="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Nama Menu</label>
-        <?php echo form_input($data, !empty($data['nama_menu']) ? $data['nama_menu'] : '', 'class="form-control form-control-user" name="nama_menu"');?>
+        <?php echo form_input('nama_menu', !empty($data['nama_menu']) ? $data['nama_menu'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Icon</label>
-        <?php echo form_input($data, !empty($data['icon']) ? $data['icon'] : '', 'class="form-control form-control-user" name="icon"');?>
+        <label>Type Menu</label>
+        <?php echo form_dropdown('type', $type, !empty($data['type']) ? $data['type'] : '', 'class="form-control form-control-user" id="type"');?>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="form-group row" style="display:none;" id="parent">
       <div class="col-sm-12">
         <label>Parent</label>
-        <?php echo form_input($data, !empty($data['id_parent']) ? $data['id_parent'] : '', 'class="form-control form-control-user" name="id_parent"');?>
+        <select class="form-control form-control-sm select2" style="width:250px;" id="list_parent" name="id_parent">
+          <option value="">- Pilih -</option>
+        </select>
       </div>
     </div>
-    <div class="form-group row" style="display:none;">
+    <div class="form-group row" style="display:none;" id="icon">
       <div class="col-sm-12">
-        <label>Headline</label>
-        <?php echo form_input($data, !empty($data['headline']) ? $data['headline'] : '', 'class="form-control form-control-user" name="headline"');?>
+        <label>Icon</label>
+        <?php echo form_input('icon', !empty($data['icon']) ? $data['icon'] : '', 'class="form-control form-control-user"');?>
+      </div>
+    </div>
+    <div class="form-group row" style="display:none;" id="target">
+      <div class="col-sm-12">
+        <label>Target</label>
+        <?php echo form_input('target', !empty($data['target']) ? $data['target'] : '', 'class="form-control form-control-user"');?>
+      </div>
+    </div>
+    <div class="form-group row" style="display:none;" id="url">
+      <div class="col-sm-12">
+        <label>URL</label>
+        <?php echo form_input('url', !empty($data['url']) ? $data['url'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
   </div>
@@ -40,6 +54,87 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script type="text/javascript">
+
+  $(document).ready(function(){
+      $("#type").change(function(){
+        var type = $("#type").val();
+        if (type == 'Menu') {
+          $("#icon").show();
+          $("#target").show();
+          $("#parent").show();
+          $("#url").hide();
+        }else if (type == 'Sub Menu') {
+          $("#icon").hide();
+          $("#target").hide();
+          $("#parent").show();
+          $("#url").show();
+        }else if (type == 'Header') {
+          $("#icon").hide();
+          $("#target").hide();
+          $("#parent").hide();
+          $("#url").hide();
+        }
+        if (type != 'Header') {
+          $.ajax({
+            type: "POST",
+            url: "<?= $list_parent; ?>",
+            data: {id : $("#id").val(), type : type},
+            dataType: "json",
+            beforeSend: function(e) {
+              if(e && e.overrideMimeType) {
+                e.overrideMimeType("application/json;charset=UTF-8");
+              }
+            },
+            success: function(response){
+              $("#list_parent").html(response.list_parent).show();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+              alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+          });
+        }
+      });
+  });
+
+  $(document).ready(function(){
+    var type = $("#type").val();
+    if (type == 'Menu') {
+      $("#icon").show();
+      $("#target").show();
+      $("#parent").show();
+      $("#url").hide();
+    }else if (type == 'Sub Menu') {
+      $("#icon").hide();
+      $("#target").hide();
+      $("#parent").show();
+      $("#url").show();
+    }else if (type == 'Header') {
+      $("#icon").hide();
+      $("#target").hide();
+      $("#parent").hide();
+      $("#url").hide();
+    }
+    if (type != 'Header') {
+      $.ajax({
+        type: "POST",
+        url: "<?= $list_parent; ?>",
+        data: {id : $("#id").val(), type : type},
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){
+          $("#list_parent").html(response.list_parent).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+        }
+      });
+    }
+  });
+
   $("#simpan").click(function(){
     var form = $("#" + $(this).closest('form').attr('name'));
     var formdata = false;

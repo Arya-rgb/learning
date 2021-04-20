@@ -25,8 +25,8 @@ class MY_Controller extends CI_Controller
       $this->template_data['list_menu'] = $this->child($header);
       $this->template_data['active'] = $active;
       $this->template_data['controller'] = $this;
-      $this->set('users', base_url('admin/users'));
-      $this->set('course', base_url('admin/course'));
+      // $this->set('users', base_url('admin/users'));
+      // $this->set('course', base_url('admin/course'));
       $this->set('menu', base_url('admin/menu'));
       return $this->load->view($template, $this->template_data);
     }

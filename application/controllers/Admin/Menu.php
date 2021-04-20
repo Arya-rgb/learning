@@ -48,27 +48,74 @@ class Menu extends MY_Controller {
       $response['data'] = array();
       $response['simpan'] = base_url('admin/'.$this->class.'/save');
       $response['disable'] = 'disabled';
+      $response['type'] = ['Header' => 'Header', 'Menu' => 'Menu', 'Sub Menu' => 'Sub Menu'];
+      $response['list_parent'] = base_url('admin/'.$this->class.'/list_parent');
       if ($get -> num_rows() > 0) {
         $response['pesan'] = 'data ada';
         $response['status'] = 200;
         $response['data'] = $get->row_array();
         $response['simpan'] = base_url('admin/'.$this->class.'/save');
         $response['disable'] = '';
+        $response['type'] = ['Header' => 'Header', 'Menu' => 'Menu', 'Sub Menu' => 'Sub Menu'];
+        $response['list_parent'] = base_url('admin/'.$this->class.'/list_parent');
       }
     }else{
       $response['data'] = array();
       $response['simpan'] = base_url('admin/'.$this->class.'/save');
       $response['disable'] = '';
+      $response['type'] = ['Header' => 'Header', 'Menu' => 'Menu', 'Sub Menu' => 'Sub Menu'];
+      $response['list_parent'] = base_url('admin/'.$this->class.'/list_parent');
     }
     return $this->load->view($this->view.'data_modal', $response);
 	}
 
+  public function list_parent()
+	{
+		$id = $this->input->post('id');
+		$type = $this->input->post('type');
+    if ($type == 'Menu') {
+      $menu = $this->master_model->data('*', 'm_menu', ['type' => 'Header'])->get()->result();
+    }elseif ($type == 'Sub Menu') {
+      $menu = $this->master_model->data('*', 'm_menu', ['type' => 'Menu'])->get()->result();
+    }
+    // dd($menu);
+		$lists = "<option value=''>- Pilih -</option>";
+		if ($id != '') {
+      $own_menu = $this->master_model->data('id_parent', 'm_menu', ['id' => $id])->get()->row();
+			foreach ($menu as $data) {
+				$check = ($data->id == $own_menu->id_parent) ? 'selected' : '';
+				$lists .= "<option value='" . $data->id . "' ".$check.">" . $data->nama_menu . "</option>";
+			}
+		}else{
+			foreach ($menu as $data) {
+				$lists .= "<option value='" . $data->id . "'>" . $data->nama_menu . "</option>";
+			}
+		}
+
+		$callback = array('list_parent' => $lists);
+		echo json_encode($callback);
+	}
+
 	public function save()
 	{
-    $conf = array(
-            array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
-            array('field' => 'icon', 'label' => 'Icon', 'rules' => 'trim|required'),
-        );
+    if ($this->input->post('type') == 'Menu') {
+      $conf = [
+        array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
+        array('field' => 'icon', 'label' => 'Icon', 'rules' => 'trim|required'),
+        array('field' => 'target', 'label' => 'Target', 'rules' => 'trim|required'),
+        array('field' => 'id_parent', 'label' => 'Parent', 'rules' => 'trim|required'),
+      ];
+    }elseif ($this->input->post('type') == 'Sub Menu') {
+      $conf = [
+        array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
+        array('field' => 'id_parent', 'label' => 'Parent', 'rules' => 'trim|required'),
+        array('field' => 'url', 'label' => 'Url', 'rules' => 'trim|required'),
+      ];
+    }elseif ($this->input->post('type') == 'Header') {
+      $conf = [
+        array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
+      ];
+    }
 
     $this->form_validation->set_rules($conf);
     $this->form_validation->set_message('required', '%s tidak boleh kosong.');
@@ -86,9 +133,10 @@ class Menu extends MY_Controller {
       $data = array(
         'id_parent' => $this->input->post('id_parent') != '' ? $this->input->post('id_parent') : NULL,
         'nama_menu' => $this->input->post('nama_menu'),
-        'icon' => $this->input->post('icon'),
+        'icon' => $this->input->post('icon') != '' ? $this->input->post('icon') : NULL,
         'target' => $this->input->post('target') != '' ? $this->input->post('target') : NULL,
         'url' => $this->input->post('url') != '' ? $this->input->post('url') : NULL,
+        'type' => $this->input->post('type') != '' ? $this->input->post('type') : NULL,
       );
       if ($where['id'] != '') {
         $update = $this->model->update_data('m_menu', $data, $where);
@@ -118,6 +166,7 @@ class Menu extends MY_Controller {
   public function unique(){
 		$id 				= $this->input->post('id');
     $nama_menu 		= $this->input->post('nama_menu');
+    $type = $this->input->post('type');
 		if (!empty($id)) {
 			if ($this->master_model->check_data(['id !='=> $id, 'nama_menu' => $nama_menu],'m_menu')) {
 				$this->form_validation->set_message('unique', 'Menu Sudah Ada !');
