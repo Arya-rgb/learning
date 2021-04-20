@@ -17,11 +17,7 @@ class Slearn extends MY_Controller {
 
 
     function index() {
-        if($this->session->userdata("token") != NULL) {
-            $this->load->view('user/dashboardUser.php');
-        } else {
-            $this->load->view('user/dashboard.php');
-        }
+       $this->load->view('user/dashboard.php');
     }
 
     public function login() {
@@ -40,7 +36,7 @@ class Slearn extends MY_Controller {
             'password' => $password
         );
 
-        $check = $this->m_data->check_login("data_user", $where)->num_rows();
+        $check = $this->m_data->check_login("ls_m_user", $where)->num_rows();
         if ($check > 0)  {
 
             $data_session = array(
@@ -65,7 +61,7 @@ class Slearn extends MY_Controller {
 
         function register() {
             $data['action'] = base_url($this->class .'/userAdd');
-            $this->load->view('register', $data);
+            $this->load->view('user/register', $data);
         }
 
         function userAdd() {
@@ -88,7 +84,7 @@ class Slearn extends MY_Controller {
             'tentang_saya' => $tentang_saya
         );
 
-        $this->m_data->UserAddModel($data, 'data_user');
+        $this->m_data->UserAddModel($data, 'ls_m_user');
         echo '<script language="javascript">';
         echo 'alert("Akun Anda Telah Terdaftar")';
         echo '</script>';
