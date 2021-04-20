@@ -47,3 +47,39 @@
     background-color: #3ea9df;
     border-color: #3ea9df;
 }
+#servicesCard1-card-body{
+	font-family: "Nunito", sans-serif !important;
+	background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+}
+#servicesCard1-card-item1{
+    font-size: 25px;
+}
+#servicesCard2-card-item1{
+    font-size: 25px;
+}
+#servicesCard3-card-item1{
+    font-size: 25px;
+}
+#servicesCard1-card-item2{
+    font-size: 17px;
+}
+#servicesCard2-card-item2{
+    font-size: 17px;
+}
+#servicesCard3-card-item2{
+    font-size: 17px;
+}
+#servicesCard2-card-body{
+	font-family: "Nunito", sans-serif !important;
+	background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+}
+#servicesCard3-card-body{
+	font-family: "Nunito", sans-serif !important;
+	background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+}
