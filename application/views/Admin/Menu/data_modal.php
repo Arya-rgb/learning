@@ -22,7 +22,7 @@
     <div class="form-group row" style="display:none;" id="parent">
       <div class="col-sm-12">
         <label>Parent</label>
-        <select class="form-control form-control-sm select2" style="width:250px;" id="list_parent" name="id_parent">
+        <select class="form-control form-control-user" id="list_parent" name="id_parent">
           <option value="">- Pilih -</option>
         </select>
       </div>
@@ -31,12 +31,6 @@
       <div class="col-sm-12">
         <label>Icon</label>
         <?php echo form_input('icon', !empty($data['icon']) ? $data['icon'] : '', 'class="form-control form-control-user"');?>
-      </div>
-    </div>
-    <div class="form-group row" style="display:none;" id="target">
-      <div class="col-sm-12">
-        <label>Target</label>
-        <?php echo form_input('target', !empty($data['target']) ? $data['target'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row" style="display:none;" id="url">
@@ -52,7 +46,7 @@
 
 <script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+<script src="<?= base_url();?>assets/toastr-js/toastr.js"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
@@ -60,17 +54,14 @@
         var type = $("#type").val();
         if (type == 'Menu') {
           $("#icon").show();
-          $("#target").show();
           $("#parent").show();
           $("#url").hide();
         }else if (type == 'Sub Menu') {
           $("#icon").hide();
-          $("#target").hide();
           $("#parent").show();
           $("#url").show();
         }else if (type == 'Header') {
           $("#icon").hide();
-          $("#target").hide();
           $("#parent").hide();
           $("#url").hide();
         }
@@ -100,17 +91,14 @@
     var type = $("#type").val();
     if (type == 'Menu') {
       $("#icon").show();
-      $("#target").show();
       $("#parent").show();
       $("#url").hide();
     }else if (type == 'Sub Menu') {
       $("#icon").hide();
-      $("#target").hide();
       $("#parent").show();
       $("#url").show();
     }else if (type == 'Header') {
       $("#icon").hide();
-      $("#target").hide();
       $("#parent").hide();
       $("#url").hide();
     }

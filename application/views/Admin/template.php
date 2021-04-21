@@ -45,39 +45,27 @@
         <div class="sidebar-brand-text mx-3">Solmit <br>Academy <sup></sup></div>
       </a>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
       <?php foreach ($list_menu as $key => $value) { ?>
         <!-- Divider -->
         <hr class="sidebar-divider">
-
         <!-- Heading -->
         <div class="sidebar-heading">
           <?= $value->nama_menu;?>
         </div>
-
         <?php if (!empty($value->child)) { ?>
           <?php foreach ($value->child as $key2 => $value2) { ?>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?= ($value2->nama_menu == $menu) ? 'active' : '' ;?>">
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse<?=$value2->target;?>" aria-expanded="true" aria-controls="collapse<?=$value2->target;?>">
                 <i class="<?=$value2->icon;?>"></i>
                 <span><?=$value2->nama_menu;?></span>
               </a>
-              <div id="collapse<?=$value2->target;?>" class="collapse" aria-labelledby="heading<?=$value2->target;?>" data-parent="#accordionSidebar">
+              <div id="collapse<?=$value2->target;?>" class="collapse <?= ($value2->nama_menu == $menu) ? 'show' : '' ;?>" aria-labelledby="heading<?=$value2->target;?>" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                   <h6 class="collapse-header">Custom <?=$value2->nama_menu;?>:</h6>
                   <?php if (!empty($value2->child)) { ?>
                     <?php foreach ($value2->child as $key3 => $value3) { ?>
-                      <a class="collapse-item" href="<?=$value3->url;?>"><?=$value3->nama_menu;?></a>
+                      <a class="collapse-item <?= ($value3->nama_menu == $sub_menu) ? 'active' : '' ;?>" href="<?=$value3->url;?>"><?=$value3->nama_menu;?></a>
                     <?php } ?>
                   <?php } ?>
                 </div>
@@ -88,17 +76,17 @@
       <?php } ?>
 
 
-      <hr class="sidebar-divider d-none d-md-block">
-
+      <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item active">
-        <a class="nav-link" href="<?=$menu;?>">
+      <li class="nav-item <?= ($sub_menu == 'menu') ? 'active' : '' ;?>">
+        <a class="nav-link" href="<?=$config_menu;?>">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Konfigurasi Menu</span></a>
         </li>
       <!-- Sidebar Toggler (Sidebar) -->
       <hr class="sidebar-divider d-none d-md-block">
+
 
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -355,7 +343,8 @@
     </div>
 
     <!-- CKEDITOR -->
-    <script src="http://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script src="<?= base_url();?>assets/ckeditor/ckeditor.js"></script>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url();?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

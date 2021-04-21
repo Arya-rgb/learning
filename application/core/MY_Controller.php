@@ -18,16 +18,15 @@ class MY_Controller extends CI_Controller
         $this->load->model('master_model');
     }
 
-    public function load_template($template = '', $view = '', $view_data = array(), $active = '')
+    public function load_template($template = '', $view = '', $view_data = array(), $menu = '', $sub_menu = '')
     {
       !empty($view_data) ? $this->set('content', $this->load->view($view, $view_data, TRUE)) : $this->set('content', $this->load->view($view, '', TRUE));
       $header = $this->master_model->data('*', 'm_menu', ['id_parent' => NULL])->get()->result();
       $this->template_data['list_menu'] = $this->child($header);
-      $this->template_data['active'] = $active;
+      $this->template_data['menu'] = $menu;
+      $this->template_data['sub_menu'] = $sub_menu;
       $this->template_data['controller'] = $this;
-      // $this->set('users', base_url('admin/users'));
-      // $this->set('course', base_url('admin/course'));
-      $this->set('menu', base_url('admin/menu'));
+      $this->set('config_menu', base_url('admin/menu'));
       return $this->load->view($template, $this->template_data);
     }
 

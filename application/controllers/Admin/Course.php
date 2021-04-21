@@ -18,7 +18,9 @@ class Course extends MY_Controller {
     $result['get_data_edit'] = base_url('admin/'.$this->class.'/get_modal');
     $result['get_data_delete'] = base_url('admin/'.$this->class.'/delete');
     // $result['update_list'] = base_url('admin/'.$this->class.'/update_list');
-		$this->load_template('admin/template', $this->view.'display', $result, $this->class);
+    $sub_menu = $this->master_model->data('id_parent, nama_menu', 'm_menu', ['url' => $this->class])->get()->row();
+    $menu = $this->master_model->data('nama_menu', 'm_menu', ['id' => $sub_menu->id_parent])->get()->row();
+		$this->load_template('admin/template', $this->view.'display', $result, $menu->nama_menu, $sub_menu->nama_menu);
 	}
 
 	public function get($id = '')

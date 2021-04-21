@@ -19,7 +19,7 @@ class Menu extends MY_Controller {
     $result['get_data_delete'] = base_url('admin/'.$this->class.'/delete');
     $result['controller'] = $this;
     // $result['update_list'] = base_url('admin/'.$this->class.'/update_list');
-		$this->load_template('admin/template', $this->view.'display', $result, $this->class);
+		$this->load_template('admin/template', $this->view.'display', $result, '', 'menu');
 	}
 
 	public function get($id = '')
@@ -102,7 +102,6 @@ class Menu extends MY_Controller {
       $conf = [
         array('field' => 'nama_menu', 'label' => 'Nama Menu', 'rules' => 'trim|required|callback_unique'),
         array('field' => 'icon', 'label' => 'Icon', 'rules' => 'trim|required'),
-        array('field' => 'target', 'label' => 'Target', 'rules' => 'trim|required'),
         array('field' => 'id_parent', 'label' => 'Parent', 'rules' => 'trim|required'),
       ];
     }elseif ($this->input->post('type') == 'Sub Menu') {
@@ -134,7 +133,7 @@ class Menu extends MY_Controller {
         'id_parent' => $this->input->post('id_parent') != '' ? $this->input->post('id_parent') : NULL,
         'nama_menu' => $this->input->post('nama_menu'),
         'icon' => $this->input->post('icon') != '' ? $this->input->post('icon') : NULL,
-        'target' => $this->input->post('target') != '' ? $this->input->post('target') : NULL,
+        'target' => $this->input->post('nama_menu'),
         'url' => $this->input->post('url') != '' ? $this->input->post('url') : NULL,
         'type' => $this->input->post('type') != '' ? $this->input->post('type') : NULL,
       );
@@ -169,12 +168,12 @@ class Menu extends MY_Controller {
     $type = $this->input->post('type');
 		if (!empty($id)) {
 			if ($this->master_model->check_data(['id !='=> $id, 'nama_menu' => $nama_menu],'m_menu')) {
-				$this->form_validation->set_message('unique', 'Menu Sudah Ada !');
+				$this->form_validation->set_message('unique', 'Nama menu sudah ada !');
 				return false;
 			}
 		}else{
 			if ($this->master_model->check_data(['nama_menu' => $nama_menu],'m_menu')) {
-				$this->form_validation->set_message('unique', 'Menu Sudah Ada !');
+				$this->form_validation->set_message('unique', 'Nama menu sudah ada !');
 				return false;
 			}
 		}
