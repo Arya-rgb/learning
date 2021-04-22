@@ -9,14 +9,14 @@
     <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Judul</label>
-        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
+        <label>Modul</label>
+        <?php echo form_dropdown('id_modul', $opt_modul, !empty($data['id_modul']) ? $data['id_modul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Sub Judul</label>
-        <?php echo form_input('sub_judul', !empty($data['sub_judul']) ? $data['sub_judul'] : '', 'class="form-control form-control-user"');?>
+        <label>Judul</label>
+        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">

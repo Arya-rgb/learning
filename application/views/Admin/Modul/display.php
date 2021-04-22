@@ -21,7 +21,7 @@
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
-              <th width="15%">Judul</th>
+              <th width="15%">Modul</th>
               <th width="15%">Gambar</th>
               <th width="55%">Deskripsi</th>
               <th width="10%">Aksi</th>
@@ -32,8 +32,8 @@
               <?php if ($data['status'] == 200) { ?>
                   <tr id="<?php echo $value['id'] ?>">
                     <td><?= $no;?>.</td>
-                    <td><?= $value['judul'];?></td>
-                    <td> <img src="<?= base_url().$value['gambar'];?>" style="width:140px;height:140px;" alt="<?= $value['judul'];?>"></td>
+                    <td><?= $value['modul'];?></td>
+                    <td> <img src="<?= base_url().$value['gambar'];?>" style="width:140px;height:140px;" alt="<?= $value['modul'];?>"></td>
                     <td>
                       <div id="less">
                         <?= character_limiter($value['deskripsi'], 200);?>

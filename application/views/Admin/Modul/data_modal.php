@@ -9,8 +9,8 @@
     <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Judul</label>
-        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
+        <label>Modul</label>
+        <?php echo form_input('modul', !empty($data['modul']) ? $data['modul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">

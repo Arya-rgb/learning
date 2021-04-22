@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main_course extends MY_Controller {
-  public $view    = 'Admin/Main_course/';
+class Modul extends MY_Controller {
+  public $view    = 'Admin/Modul/';
 	public function __construct(){
 		parent::__construct();
     // if ($this->session->userdata('status') != 'isLogin') {
     //   redirect('login');
     // }
     $this->load->database();
-		$this->load->model('Admin/Main_course_model','model');
+		$this->load->model('Admin/Modul_model','model');
 	}
 
 	public function index(){
     $result['data'] = $this->get();
-    $result['judul'] = 'Main Course List';
+    $result['judul'] = 'Modul List';
     $result['get_data_edit'] = base_url('admin/'.$this->class.'/get_modal');
     $result['get_data_delete'] = base_url('admin/'.$this->class.'/delete');
     // $result['update_list'] = base_url('admin/'.$this->class.'/update_list');
@@ -26,7 +26,7 @@ class Main_course extends MY_Controller {
 	public function get($id = '')
 	{
 		$this->model->id = $id == '' ? $this->input->post('id') : $id;
-		$get = $this->model->get_data('ls_m_main_course');
+		$get = $this->model->get_data('ls_m_modul');
     $response['pesan'] = 'Data Tidak Ditemukan';
     $response['status'] = 404;
     $response['data'] = array();
@@ -43,7 +43,7 @@ class Main_course extends MY_Controller {
     $id = $this->input->post('id');
     if ($id != '') {
       $this->model->id = $id;
-      $get = $this->model->get_data('ls_m_main_course');
+      $get = $this->model->get_data('ls_m_modul');
       $response['pesan'] = 'data tidak ada';
       $response['status'] = 404;
       $response['data'] = array();
@@ -67,7 +67,7 @@ class Main_course extends MY_Controller {
 	public function save()
 	{
     $conf = array(
-            array('field' => 'judul', 'label' => 'Judul', 'rules' => 'trim|required|callback_unique'),
+            array('field' => 'modul', 'label' => 'Modul', 'rules' => 'trim|required|callback_unique'),
             // array('field' => 'gambar', 'label' => 'Gambar', 'rules' => 'trim|required'),
             array('field' => 'deskripsi', 'label' => 'Deskripsi', 'rules' => 'trim|required'),
             array('field' => 'url', 'label' => 'Url', 'rules' => 'trim|required'),
@@ -89,7 +89,7 @@ class Main_course extends MY_Controller {
       if ($_FILES['gambar']['name'] == '') {
         $gambar = $this->input->post('gambar_old');
         $data = array(
-          'judul' => $this->input->post('judul'),
+          'modul' => $this->input->post('modul'),
           'url' => $this->input->post('url'),
           'deskripsi' => $this->input->post('deskripsi'),
           'gambar' => $gambar,
@@ -102,7 +102,7 @@ class Main_course extends MY_Controller {
         $gambar = $cek_uploads['nama_file'];
         $type_gambar = $cek_uploads['type_file'];
         $data = array(
-          'judul' => $this->input->post('judul'),
+          'modul' => $this->input->post('modul'),
           'url' => $this->input->post('url'),
           'deskripsi' => $this->input->post('deskripsi'),
           'gambar' => $gambar,
@@ -111,7 +111,7 @@ class Main_course extends MY_Controller {
       }
       $where['id'] = $this->input->post('id');
       if ($where['id'] != '') {
-        $update = $this->model->update_data('ls_m_main_course', $data, $where);
+        $update = $this->model->update_data('ls_m_modul', $data, $where);
         $response['pesan'] = 'Gagal Melakukan Update Main Course';
         $response['status'] = 404;
         if ($update) {
@@ -119,7 +119,7 @@ class Main_course extends MY_Controller {
           $response['status'] = 200;
         }
       }else{
-        $create = $this->model->create_data('ls_m_main_course', $data);
+        $create = $this->model->create_data('ls_m_modul', $data);
         $id_user = $this->db->insert_id();
         $response['pesan'] = 'Data Main Course Tidak Berhasil Ditambahkan';
         $response['status'] = 404;
@@ -137,15 +137,15 @@ class Main_course extends MY_Controller {
 
   public function unique(){
 		$id 				= $this->input->post('id');
-    $judul 		= strtolower($this->input->post('judul'));
+    $modul 		= strtolower($this->input->post('modul'));
 		if (!empty($id)) {
-			if ($this->master_model->check_data(['id !='=> $id, 'lower(judul)' => $judul],'ls_m_main_course')) {
-				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
+			if ($this->master_model->check_data(['id !='=> $id, 'lower(modul)' => $modul],'ls_m_modul')) {
+				$this->form_validation->set_message('unique', 'Modul Sudah Ada !');
 				return false;
 			}
 		}else{
-			if ($this->master_model->check_data(['judul' => $judul],'ls_m_main_course')) {
-				$this->form_validation->set_message('unique', 'Judul Sudah Ada !');
+			if ($this->master_model->check_data(['modul' => $modul],'ls_m_modul')) {
+				$this->form_validation->set_message('unique', 'Modul Sudah Ada !');
 				return false;
 			}
 		}
@@ -156,8 +156,8 @@ class Main_course extends MY_Controller {
 	public function delete()
   {
     $where['id'] = $this->input->post('id');
-    $file = $this->master_model->data('gambar', 'ls_m_main_course', ['id' => $this->input->post('id')])->get()->row();
-    $status = $this->master_model->delete($where, 'ls_m_main_course');
+    $file = $this->master_model->data('gambar', 'ls_m_modul', ['id' => $this->input->post('id')])->get()->row();
+    $status = $this->master_model->delete($where, 'ls_m_modul');
     $response['pesan'] = 'Data Gagal Dihapus';
     $response['status'] = 404;
     if ($status) {

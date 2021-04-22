@@ -21,8 +21,8 @@
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
+              <th width="15%">Modul</th>
               <th width="15%">Judul</th>
-              <th width="15%">Sub Judul</th>
               <th width="28%">Deskripsi</th>
               <th width="29%">Video</th>
               <th width="8%">Aksi</th>
@@ -33,8 +33,8 @@
               <?php if ($data['status'] == 200) { ?>
                   <tr id="<?php echo $value['id'] ?>">
                     <td><?= $no;?>.</td>
+                    <td><?= $value['modul'];?></td>
                     <td><?= $value['judul'];?></td>
-                    <td><?= $value['sub_judul'];?></td>
                     <td>
                       <div id="less">
                         <?= character_limiter($value['deskripsi'], 200);?>

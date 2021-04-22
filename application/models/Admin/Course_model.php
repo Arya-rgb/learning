@@ -13,10 +13,11 @@ class Course_model extends MY_Model {
 	public function get_data($table)
 	{
 		// $this->db->select('a.*, b.urutan');
-		$this->db->select('a.*');
+		$this->db->select('a.*, b.modul');
 		$this->db->from($table.' a');
+		$this->db->join('ls_m_modul b', 'a.id_modul = b.id', 'LEFT');
 		// $this->db->join('urutan_biodata b', 'a.id = b.id_user', 'LEFT');
-		if ($this->id != '') $this->db->where('id', $this->id);
+		if ($this->id != '') $this->db->where('a.id', $this->id);
 		// $this->db->order_by('b.urutan', 'ASC');
 		return $this->db->get();
 	}
