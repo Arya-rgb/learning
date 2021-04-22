@@ -1,6 +1,6 @@
-<?php echo form_open_multipart($simpan, array('name' => 'modal-biodata', 'id' => 'modal-biodata')); ?>
+<?php echo form_open_multipart($simpan, array('name' => 'modal-main-course', 'id' => 'modal-main-course')); ?>
   <div class="modal-header">
-    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Users</b></h5>
+    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Main Course</b></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -9,40 +9,27 @@
     <input type="hidden" name="id" value="<?= !empty($data['id']) ? $data['id'] : '';?>">
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Nama Lengkap</label>
-        <?php echo form_input($data, !empty($data['nama_lengkap']) ? $data['nama_lengkap'] : '', 'class="form-control form-control-user" name="nama_lengkap"');?>
+        <label>Judul</label>
+        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Username</label>
-        <?php echo form_input($data, !empty($data['username']) ? $data['username'] : '', 'class="form-control form-control-user" name="username"');?>
-      </div>
-    </div>
-    <?php if (empty($data['id'])) { ?>
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <label>Password</label>
-          <?php echo form_password($data, !empty($data['password']) ? $data['password'] : '', 'class="form-control form-control-user" name="password"');?>
-        </div>
-      </div>
-    <?php } ?>
-    <div class="form-group row">
-      <div class="col-sm-12">
-        <label>Email</label>
-        <?php echo form_input($data, !empty($data['email']) ? $data['email'] : '', 'class="form-control form-control-user" name="email"');?>
+        <label>Gambar</label>
+        <?php echo form_upload('gambar', '', 'class="form-control form-control-user"');?>
+        <?php echo form_input('gambar_old', !empty($data['gambar']) ? $data['gambar'] : '', 'class="form-control form-control-user" hidden');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Headline</label>
-        <?php echo form_input($data, !empty($data['headline']) ? $data['headline'] : '', 'class="form-control form-control-user" name="headline"');?>
+        <label>Deskripsi</label>
+        <?php echo form_textarea('deskripsi', !empty($data['deskripsi']) ? $data['deskripsi'] : '', 'class="form-control form-control-user" id="ckeditor"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Tentang Saya</label>
-        <?php echo form_textarea($data, !empty($data['tentang_saya']) ? $data['tentang_saya'] : '', 'class="form-control form-control-user" name="tentang_saya"');?>
+        <label>Url</label>
+        <?php echo form_input('url', !empty($data['url']) ? $data['url'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
   </div>
@@ -53,8 +40,14 @@
 <script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
 <link href="<?= base_url();?>assets/toastr-js/toastr.scss" rel="stylesheet"/>
 <script src="<?= base_url();?>assets/toastr-js/toastr.js"></script>
+<script>
+    CKEDITOR.replace('ckeditor');
+</script>
 <script type="text/javascript">
   $("#simpan").click(function(){
+    for (instance in CKEDITOR.instances) {
+      CKEDITOR.instances[instance].updateElement();
+    }
     var form = $("#" + $(this).closest('form').attr('name'));
     var formdata = false;
     if (window.FormData) {

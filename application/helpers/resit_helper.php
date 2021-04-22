@@ -42,6 +42,30 @@ if (!function_exists('uploadVideo')) {
 			return $response;
 		}
 }
+if (!function_exists('uploadGambar')) {
+	function uploadGambar($nama)
+		{
+			$CI = &get_instance();
+			$upload_path = 'uploads/main_course_gambar/';
+			$config['upload_path'] = $upload_path;
+			$config['allowed_types'] = '*';
+      $config['max_size'] = 1024 * 100;
+      $config['encrypt_name'] = false;
+
+	    $CI->load->library('upload', $config);
+			$CI->upload->initialize($config);
+	    if (!$CI->upload->do_upload($nama)) {
+				$response['pesan'] = FALSE;
+				$response['nama_file'] = '';
+				$response['type_file'] = '';
+	    }else{
+					$response['pesan'] = TRUE;
+					$response['nama_file'] = base_url().$upload_path.$CI->upload->data('file_name');
+					$response['type_file'] = $CI->upload->data('file_type');
+			}
+			return $response;
+		}
+}
 if (!function_exists('options')) {
 	function options($table = '', $key = array(), $value = '', $label = '', $html = '', $default = '', $def_value = '', $order_by = '', $group_by = '', $db = 'default')
 	{
