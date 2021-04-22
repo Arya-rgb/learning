@@ -36,7 +36,7 @@ if (!function_exists('uploadVideo')) {
 				$response['type_file'] = '';
 	    }else{
 					$response['pesan'] = TRUE;
-					$response['nama_file'] = base_url().$upload_path.$CI->upload->data('file_name');
+					$response['nama_file'] = $upload_path.$CI->upload->data('file_name');
 					$response['type_file'] = $CI->upload->data('file_type');
 			}
 			return $response;
@@ -60,7 +60,7 @@ if (!function_exists('uploadGambar')) {
 				$response['type_file'] = '';
 	    }else{
 					$response['pesan'] = TRUE;
-					$response['nama_file'] = base_url().$upload_path.$CI->upload->data('file_name');
+					$response['nama_file'] = $upload_path.$CI->upload->data('file_name');
 					$response['type_file'] = $CI->upload->data('file_type');
 			}
 			return $response;

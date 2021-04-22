@@ -89,6 +89,9 @@ class Course extends MY_Controller {
         $url_video = $this->input->post('url_video_old');
         $type_video = $this->input->post('type_video_old');
       }else{
+        if (file_exists($this->input->post('url_video_old'))) {
+          unlink($this->input->post('url_video_old'));
+        }
         $cek_uploads = uploadVideo('url_video');
         $url_video = $cek_uploads['nama_file'];
         $type_video = $cek_uploads['type_file'];
@@ -147,11 +150,14 @@ class Course extends MY_Controller {
 	public function delete()
   {
     $where['id'] = $this->input->post('id');
+    $file = $this->master_model->data('url_video', 'ls_m_course', ['id' => $this->input->post('id')])->get()->row();
     $status = $this->master_model->delete($where, 'ls_m_course');
-    // $urutan = $this->master_model->delete(['id_user' => $this->input->post('id')], 'urutan_biodata');
     $response['pesan'] = 'Data Gagal Dihapus';
     $response['status'] = 404;
     if ($status) {
+      if (file_exists($file->url_video)) {
+        unlink($file->url_video);
+      }
       $response['pesan'] = 'Data Berhasil Dihapus';
       $response['status'] = 200;
     }

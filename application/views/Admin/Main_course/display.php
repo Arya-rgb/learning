@@ -33,7 +33,7 @@
                   <tr id="<?php echo $value['id'] ?>">
                     <td><?= $no;?>.</td>
                     <td><?= $value['judul'];?></td>
-                    <td> <img src="<?= $value['gambar'];?>" style="width:140px;height:140px;" alt="<?= $value['judul'];?>"></td>
+                    <td> <img src="<?= base_url().$value['gambar'];?>" style="width:140px;height:140px;" alt="<?= $value['judul'];?>"></td>
                     <td>
                       <div id="less">
                         <?= character_limiter($value['deskripsi'], 200);?>

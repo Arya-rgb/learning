@@ -47,7 +47,7 @@
                     </td>
                     <td>
                       <video width="300" height="200" controls>
-                        <source src="<?= $value['url_video'];?>" type="<?= $value['type_video'];?>">
+                        <source src="<?= base_url().$value['url_video'];?>" type="<?= $value['type_video'];?>">
                       </video>
                     </td>
                     <td>

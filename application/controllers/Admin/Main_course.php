@@ -95,6 +95,9 @@ class Main_course extends MY_Controller {
           'gambar' => $gambar,
         );
       }else{
+        if (file_exists($this->input->post('gambar_old'))) {
+          unlink($this->input->post('gambar_old'));
+        }
         $cek_uploads = uploadGambar('gambar');
         $gambar = $cek_uploads['nama_file'];
         $type_gambar = $cek_uploads['type_file'];
@@ -153,11 +156,14 @@ class Main_course extends MY_Controller {
 	public function delete()
   {
     $where['id'] = $this->input->post('id');
+    $file = $this->master_model->data('gambar', 'ls_m_main_course', ['id' => $this->input->post('id')])->get()->row();
     $status = $this->master_model->delete($where, 'ls_m_main_course');
-    // $urutan = $this->master_model->delete(['id_user' => $this->input->post('id')], 'urutan_biodata');
     $response['pesan'] = 'Data Gagal Dihapus';
     $response['status'] = 404;
     if ($status) {
+      if (file_exists($file->gambar)) {
+        unlink($file->gambar);
+      }
       $response['pesan'] = 'Data Berhasil Dihapus';
       $response['status'] = 200;
     }
