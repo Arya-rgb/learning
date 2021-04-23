@@ -21,8 +21,8 @@
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
+              <th width="15%">Modul</th>
               <th width="15%">Judul</th>
-              <th width="15%">Sub Judul</th>
               <th width="28%">Deskripsi</th>
               <th width="29%">Video</th>
               <th width="8%">Aksi</th>
@@ -33,8 +33,8 @@
               <?php if ($data['status'] == 200) { ?>
                   <tr id="<?php echo $value['id'] ?>">
                     <td><?= $no;?>.</td>
+                    <td><?= $value['modul'];?></td>
                     <td><?= $value['judul'];?></td>
-                    <td><?= $value['sub_judul'];?></td>
                     <td>
                       <div id="less">
                         <?= character_limiter($value['deskripsi'], 200);?>
@@ -47,7 +47,7 @@
                     </td>
                     <td>
                       <video width="300" height="200" controls>
-                        <source src="<?= $value['url_video'];?>" type="<?= $value['type_video'];?>">
+                        <source src="<?= base_url().$value['url_video'];?>" type="<?= $value['type_video'];?>">
                       </video>
                     </td>
                     <td>
@@ -72,7 +72,7 @@
 </div>
 <!-- /.container-fluid -->
 <script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+<link href="<?= base_url();?>assets/toastr-js/toastr.scss" rel="stylesheet"/>
 <script src="<?= base_url();?>assets/toastr-js/toastr.js"></script>
 <script>
   $(document).ready(function(){

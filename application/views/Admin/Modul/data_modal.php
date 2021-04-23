@@ -1,6 +1,6 @@
-<?php echo form_open_multipart($simpan, array('name' => 'modal-course', 'id' => 'modal-course')); ?>
+<?php echo form_open_multipart($simpan, array('name' => 'modal-main-course', 'id' => 'modal-main-course')); ?>
   <div class="modal-header">
-    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Course</b></h5>
+    <h5 class="modal-title" id="ModalLabelLarge"><b>Master Main Course</b></h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,13 +10,14 @@
     <div class="form-group row">
       <div class="col-sm-12">
         <label>Modul</label>
-        <?php echo form_dropdown('id_modul', $opt_modul, !empty($data['id_modul']) ? $data['id_modul'] : '', 'class="form-control form-control-user"');?>
+        <?php echo form_input('modul', !empty($data['modul']) ? $data['modul'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Judul</label>
-        <?php echo form_input('judul', !empty($data['judul']) ? $data['judul'] : '', 'class="form-control form-control-user"');?>
+        <label>Gambar</label>
+        <?php echo form_upload('gambar', '', 'class="form-control form-control-user"');?>
+        <?php echo form_input('gambar_old', !empty($data['gambar']) ? $data['gambar'] : '', 'class="form-control form-control-user" hidden');?>
       </div>
     </div>
     <div class="form-group row">
@@ -27,10 +28,8 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-12">
-        <label>Video</label>
-        <?php echo form_upload('url_video', '', 'class="form-control form-control-user"');?>
-        <?php echo form_input('url_video_old', !empty($data['url_video']) ? $data['url_video'] : '', 'class="form-control form-control-user" hidden');?>
-        <?php echo form_input('type_video_old', !empty($data['type_video']) ? $data['type_video'] : '', 'class="form-control form-control-user" hidden');?>
+        <label>Url</label>
+        <?php echo form_input('url', !empty($data['url']) ? $data['url'] : '', 'class="form-control form-control-user"');?>
       </div>
     </div>
   </div>

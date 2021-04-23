@@ -17,16 +17,14 @@
       </div>
       <br>
       <div class="table-responsive">
-        <table class="table table-striped table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead class="thead-dark">
             <tr>
               <th width="5%">No. </th>
-              <th>Nama Lengkap</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Headline</th>
-              <th>Tentang Saya</th>
-              <th width="15%">Aksi</th>
+              <th width="15%">Modul</th>
+              <th width="15%">Gambar</th>
+              <th width="55%">Deskripsi</th>
+              <th width="10%">Aksi</th>
             </tr>
           </thead>
           <tbody class="row_position">
@@ -34,15 +32,19 @@
               <?php if ($data['status'] == 200) { ?>
                   <tr id="<?php echo $value['id'] ?>">
                     <td><?= $no;?>.</td>
-                    <td><?= $value['nama_lengkap'];?></td>
-                    <td><?= $value['username'];?></td>
-                    <td><?= $value['email'];?></td>
-                    <td><?= $value['headline'];?></td>
-                    <td><?= $value['tentang_saya'];?></td>
+                    <td><?= $value['modul'];?></td>
+                    <td> <img src="<?= base_url().$value['gambar'];?>" style="width:140px;height:140px;" alt="<?= $value['modul'];?>"></td>
                     <td>
-                      <button href="#" id="<?=$value['id'];?>" class="btn btn-info btn-sm resetPassword">
-                        Reset Password
-                      </button>
+                      <div id="less">
+                        <?= character_limiter($value['deskripsi'], 200);?>
+                        <a href="#" id="load_more">Load More</a>
+                      </div>
+                      <div id="more" style="display:none">
+                        <?= $value['deskripsi'];?>
+                        <a href="#" id="load_less">Load Less</a>
+                      </div>
+                    </td>
+                    <td>
                       <a href="#" id="<?=$value['id'];?>" class="btn btn-info btn-circle btn-sm getModal">
                         <i class="fas fa-info-circle"></i>
                       </a>
@@ -67,62 +69,14 @@
 <link href="<?= base_url();?>assets/toastr-js/toastr.scss" rel="stylesheet"/>
 <script src="<?= base_url();?>assets/toastr-js/toastr.js"></script>
 <script>
-  function updateOrder(data) {
-    bootbox.confirm("Apakah anda yakin akan mengubah urutan ini?", function(result){
-      if(result == true) {
-        $.ajax({
-            url:"<?= $update_list;?>",
-            type:'post',
-            data:{position:data},
-            success: function(){
-               toastr.success('Urutan Biodata Berhasil Diubah');
-               setTimeout(function () {
-                 location.reload(true);
-               }, 1500);
-            },
-        })
-      }else{
-        toastr.error('Urutan Biodata Tidak Berubah');
-        setTimeout(function () {
-          location.reload(true);
-        }, 1500);
-      }
-    });
-  }
-
   $(document).ready(function(){
-    $(".resetPassword").click(function(event){
-      var id = $(this).attr('id');
-      bootbox.confirm("Apakah anda yakin akan me reset password dengan username ini?", function(result){
-        if(result == true) {
-          $.ajax({
-              url: "<?=$get_reset_password;?>",
-              method: "POST",
-              data: {id:id},
-              success: function(res){
-                var hasil = $.parseJSON(res);
-                if (hasil["status"] == 200) {
-                   toastr.success(hasil["pesan"]);
-                   setTimeout(function () {
-                     return hasil["status"];
-                   }, 1500);
-                   setTimeout(function () {
-                     location.reload(true);
-                   }, 1500);
-                 }else{
-                   toastr.error(hasil["pesan"]);
-                   result = false;
-                   return hasil["status"];
-                 }
-              },
-              error: function (res) {
-                toastr.error("Data tidak dapat dihapus.");
-                result = false;
-                return false;
-              },
-          });
-        }
-      });
+    $("#load_more").click(function(){
+      $("#more").show();
+      $("#less").hide();
+    });
+    $("#load_less").click(function(){
+      $("#less").show();
+      $("#more").hide();
     });
 
     $(".getModal").click(function(event){

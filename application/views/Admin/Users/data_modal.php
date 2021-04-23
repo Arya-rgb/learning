@@ -51,7 +51,7 @@
 <?php echo form_close() ?>
 
 <script type="text/javascript" src="<?= base_url();?>assets/admin/vendor/jquery/bootbox.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+<link href="<?= base_url();?>assets/toastr-js/toastr.scss" rel="stylesheet"/>
 <script src="<?= base_url();?>assets/toastr-js/toastr.js"></script>
 <script type="text/javascript">
   $("#simpan").click(function(){
