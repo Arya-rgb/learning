@@ -50,11 +50,11 @@
 #servicesCard1-card-body{
 	font-family: "Nunito", sans-serif !important;
 	background: #ffffff;
-    padding: 40px;
     border-radius: 10px;
 }
 #servicesCard1-card-item1{
     font-size: 25px;
+    padding-top: 10px;
 }
 #servicesCard2-card-item1{
     font-size: 25px;
@@ -74,12 +74,33 @@
 #servicesCard2-card-body{
 	font-family: "Nunito", sans-serif !important;
 	background: #ffffff;
-    padding: 40px;
     border-radius: 10px;
 }
 #servicesCard3-card-body{
 	font-family: "Nunito", sans-serif !important;
 	background: #ffffff;
-    padding: 40px;
     border-radius: 10px;
+}
+.card-image > img {
+  width: 100%;
+  max-width: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1.5);
+  -moz-transform: translate(-50%, -50%) scale(1.5);
+  -o-transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.5);
+}
+.card-image {
+  width: 100%;
+  height: 110px;
+  position: relative;
+  overflow: hidden;
+}
+#copyright{
+  background: #fff;
+  border-top: 1px solid #dee2e6;
+  color: #869099;
+  padding: 1rem;
 }
